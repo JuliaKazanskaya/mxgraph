@@ -4,7 +4,7 @@ const $ = require('jquery');
 
 let dic = {
     "MAT-bb1cd349-fd8d-474e-9529-7facedb48f7f": {
-        "name": "Material Stream", "custom_name": "23", "connections": {}, "properties": {
+        "ProductName": "Material Stream", "custom_name": "23", "connections": {}, "properties": {
             "PROP_MS_0": {
                 "name": "Temperature", "value": 527.1444808219956, "unit": "K", "editable": true
             }, "PROP_MS_1": {
@@ -24,7 +24,7 @@ let dic = {
             }
         }, "additional_properties": {}
     }, "MAT-16efba18-2884-436a-8673-0c72c3d89d47": {
-        "name": "Material Stream", "custom_name": "Product", "connections": {}, "properties": {
+        "ProductName": "Material Stream", "custom_name": "Product", "connections": {}, "properties": {
             "PROP_MS_0": {
                 "name": "Temperature", "value": 527.1444808219956, "unit": "K", "editable": true
             }, "PROP_MS_1": {
@@ -44,13 +44,13 @@ let dic = {
             }
         }, "additional_properties": {}
     }, "EN-05c3e9ac-15ca-47f8-85cb-52c457612f3d": {
-        "name": "Energy Stream", "custom_name": "24", "connections": {}, "properties": {
+        "ProductName": "Energy Stream", "custom_name": "24", "connections": {}, "properties": {
             "PROP_ES_0": {
                 "name": "Power", "value": 5.684341886080802e-14, "unit": "kW", "editable": true
             }
         }, "additional_properties": {}
     }, "MAT-fbe37236-421f-452e-a5db-792b8ee83d2f": {
-        "name": "Material Stream", "custom_name": "19", "connections": {}, "properties": {
+        "ProductName": "Material Stream", "custom_name": "19", "connections": {}, "properties": {
             "PROP_MS_0": {
                 "name": "Temperature", "value": 527.1444808219956, "unit": "K", "editable": true
             }, "PROP_MS_1": {
@@ -70,7 +70,7 @@ let dic = {
             }
         }, "additional_properties": {}
     }, "MAT-e2ce99a3-6d92-4065-9a5d-cfb50ea1fa48": {
-        "name": "Material Stream", "custom_name": "18", "connections": {
+        "ProductName": "Material Stream", "custom_name": "18", "connections": {
             "Out": "CS-b9dca66c-aba8-4616-8dc6-ad25ed843f02"
         }, "properties": {
             "PROP_MS_0": {
@@ -92,11 +92,11 @@ let dic = {
             }
         }, "additional_properties": {}
     }, "MIST-ad767381-40b2-4d1c-a6bf-04c44ab09ec1": {
-        "name": "Stream Mixer", "custom_name": "14", "connections": {
+        "ProductName": "Stream Mixer", "custom_name": "14", "connections": {
             "Out": "MAT-0d3c3b31-5f8f-44f8-ba36-0c1a6ecdfc15"
         }, "properties": {}, "additional_properties": {}
     }, "RC-313e4b82-b32d-4950-9188-44af434d51c8": {
-        "name": "Conversion Reactor", "custom_name": "Reactor", "connections": {
+        "ProductName": "Conversion Reactor", "custom_name": "Reactor", "connections": {
             "Out": "MAT-e2ce99a3-6d92-4065-9a5d-cfb50ea1fa48",
             "Out1": "MAT-fbe37236-421f-452e-a5db-792b8ee83d2f",
             "Out2": "EN-3fbeb6e1-28ea-4b30-88f8-b500969890d3"
@@ -136,19 +136,19 @@ let dic = {
             }
         }
     }, "CS-b9dca66c-aba8-4616-8dc6-ad25ed843f02": {
-        "name": "Compound Separator", "custom_name": "20", "connections": {
+        "ProductName": "Compound Separator", "custom_name": "20", "connections": {
             "Out": "EN-05c3e9ac-15ca-47f8-85cb-52c457612f3d",
             "Out1": "MAT-bb1cd349-fd8d-474e-9529-7facedb48f7f",
             "Out2": "MAT-16efba18-2884-436a-8673-0c72c3d89d47"
         }, "properties": {}, "additional_properties": {}
     }, "EN-3fbeb6e1-28ea-4b30-88f8-b500969890d3": {
-        "name": "Energy Stream", "custom_name": "16", "connections": {}, "properties": {
+        "ProductName": "Energy Stream", "custom_name": "16", "connections": {}, "properties": {
             "PROP_ES_0": {
                 "name": "Power", "value": -3540.616197291388, "unit": "kW", "editable": true
             }
         }, "additional_properties": {}
     }, "MAT-0d3c3b31-5f8f-44f8-ba36-0c1a6ecdfc15": {
-        "name": "Material Stream", "custom_name": "Butane_in", "connections": {
+        "ProductName": "Material Stream", "custom_name": "Butane_in", "connections": {
             "Out": "RC-313e4b82-b32d-4950-9188-44af434d51c8"
         }, "properties": {
             "PROP_MS_0": {
@@ -170,7 +170,7 @@ let dic = {
             }
         }, "additional_properties": {}
     }, "MAT-e4e5b197-368a-459f-83b3-9abc8fc51165": {
-        "name": "Material Stream", "custom_name": "Feed", "connections": {
+        "ProductName": "Material Stream", "custom_name": "Feed", "connections": {
             "Out": "DIV-a7f55a57-3eed-45c8-bab5-372bd3e5a99d"
         }, "properties": {
             "PROP_MS_0": {
@@ -192,7 +192,7 @@ let dic = {
             }
         }, "additional_properties": {}
     }, "DIV-a7f55a57-3eed-45c8-bab5-372bd3e5a99d": {
-        "name": "Stream Splitter", "custom_name": "Splitter", "connections": {
+        "ProductName": "Stream Splitter", "custom_name": "Splitter", "connections": {
             "Out": "MAT-50f81cc6-9095-40d4-908c-8905bc44ef92", "Out1": "MAT-42fcc1ee-74aa-4d9c-a150-a85da87d4307"
         }, "properties": {
             "PROP_SP_1": {
@@ -208,7 +208,7 @@ let dic = {
             "Ratios": [0.55, 0.44999999999999996, 0]
         }
     }, "MAT-df3bf898-ed79-48e2-83fb-4682b34cab91": {
-        "name": "Material Stream", "custom_name": "Steam2_out", "connections": {}, "properties": {
+        "ProductName": "Material Stream", "custom_name": "Steam2_out", "connections": {}, "properties": {
             "PROP_MS_0": {
                 "name": "Temperature", "value": 522.5438819454105, "unit": "K", "editable": true
             }, "PROP_MS_1": {
@@ -228,7 +228,7 @@ let dic = {
             }
         }, "additional_properties": {}
     }, "HE-bc25b603-c563-43df-a994-71b952e04b1f": {
-        "name": "Heat Exchanger", "custom_name": "13", "connections": {
+        "ProductName": "Heat Exchanger", "custom_name": "13", "connections": {
             "Out": "MAT-df3bf898-ed79-48e2-83fb-4682b34cab91", "Out1": "MAT-568706eb-f28b-405b-9545-faf96e3b8751"
         }, "properties": {
             "PROP_HX_0": {
@@ -240,7 +240,7 @@ let dic = {
             }
         }, "additional_properties": {}
     }, "MAT-fc33c28b-5a0e-4ee6-bbcb-438b164ca35f": {
-        "name": "Material Stream", "custom_name": "Steam2_in", "connections": {
+        "ProductName": "Material Stream", "custom_name": "Steam2_in", "connections": {
             "Out": "HE-bc25b603-c563-43df-a994-71b952e04b1f"
         }, "properties": {
             "PROP_MS_0": {
@@ -262,7 +262,7 @@ let dic = {
             }
         }, "additional_properties": {}
     }, "MAT-50f81cc6-9095-40d4-908c-8905bc44ef92": {
-        "name": "Material Stream", "custom_name": "8", "connections": {
+        "ProductName": "Material Stream", "custom_name": "8", "connections": {
             "Out": "HE-bc25b603-c563-43df-a994-71b952e04b1f"
         }, "properties": {
             "PROP_MS_0": {
@@ -284,7 +284,7 @@ let dic = {
             }
         }, "additional_properties": {}
     }, "MAT-568706eb-f28b-405b-9545-faf96e3b8751": {
-        "name": "Material Stream", "custom_name": "Butane2_out", "connections": {
+        "ProductName": "Material Stream", "custom_name": "Butane2_out", "connections": {
             "Out": "MIST-ad767381-40b2-4d1c-a6bf-04c44ab09ec1"
         }, "properties": {
             "PROP_MS_0": {
@@ -306,7 +306,7 @@ let dic = {
             }
         }, "additional_properties": {}
     }, "MAT-14003e69-ea88-4243-9bf9-1d6130017930": {
-        "name": "Material Stream", "custom_name": "Steam1_out", "connections": {}, "properties": {
+        "ProductName": "Material Stream", "custom_name": "Steam1_out", "connections": {}, "properties": {
             "PROP_MS_0": {
                 "name": "Temperature", "value": 518.9262108615856, "unit": "K", "editable": true
             }, "PROP_MS_1": {
@@ -326,7 +326,7 @@ let dic = {
             }
         }, "additional_properties": {}
     }, "MAT-afdcea6d-3332-4373-9277-d160691a4560": {
-        "name": "Material Stream", "custom_name": "Butane1_out", "connections": {
+        "ProductName": "Material Stream", "custom_name": "Butane1_out", "connections": {
             "Out": "MIST-ad767381-40b2-4d1c-a6bf-04c44ab09ec1"
         }, "properties": {
             "PROP_MS_0": {
@@ -348,7 +348,7 @@ let dic = {
             }
         }, "additional_properties": {}
     }, "MAT-3708a5a9-9cde-412e-ad93-dc97a54ee0fe": {
-        "name": "Material Stream", "custom_name": "Steam1_in", "connections": {
+        "ProductName": "Material Stream", "custom_name": "Steam1_in", "connections": {
             "Out": "HE-6278bc32-8623-4d78-8805-290597756337"
         }, "properties": {
             "PROP_MS_0": {
@@ -370,7 +370,7 @@ let dic = {
             }
         }, "additional_properties": {}
     }, "MAT-42fcc1ee-74aa-4d9c-a150-a85da87d4307": {
-        "name": "Material Stream", "custom_name": "2", "connections": {
+        "ProductName": "Material Stream", "custom_name": "2", "connections": {
             "Out": "HE-6278bc32-8623-4d78-8805-290597756337"
         }, "properties": {
             "PROP_MS_0": {
@@ -392,7 +392,7 @@ let dic = {
             }
         }, "additional_properties": {}
     }, "HE-6278bc32-8623-4d78-8805-290597756337": {
-        "name": "Heat Exchanger", "custom_name": "1", "connections": {
+        "ProductName": "Heat Exchanger", "custom_name": "1", "connections": {
             "Out": "MAT-14003e69-ea88-4243-9bf9-1d6130017930", "Out1": "MAT-afdcea6d-3332-4373-9277-d160691a4560"
         }, "properties": {
             "PROP_HX_0": {
@@ -420,11 +420,73 @@ const {
     mxCompactTreeLayout,
     mxToolbar,
     mxGeometry,
-    mxCell
+    mxCell,
+    mxPerimeter,
+    mxGraphView,
+    mxConnectionConstraint,
+    mxShape,
+    mxTriangle,
+    mxPoint,
+    mxConstraintHandler,
+    mxImage,
+    mxEdgeHandler
 } = new mxGraphFactory();
 
+const figures = [
+    ['Material Stream', 'MS'],
+    ['Energy Stream', 'E'],
+    ['Orifice Plate ', 'OP'],
+    ['Compressor', 'C'],
+    ['Pipe Segment', 'PIPE'],
+    ['Pump', 'PUMP'],
+    ['Expander (Turbine)', 'X'],
+    ['Valve', 'VALVE'],
+    ['Compound Separator', 'CS'],
+    ['Tank', 'TANK'],
+    ['Gas-Liquid Separator', 'V'],
+    ['Stream Mixer', 'MIX'],
+    ['Stream Splitter', 'SPL'],
+    ['Energy Mixer', 'EMIX'],
+    ['Cooler', 'CL'],
+    ['Heater', 'HT'],
+    ['Heat Exchanger', 'HX'],
+    ['Air Cooler', 'AC'],
+    ['Conversion Reactor', 'RCONV'],
+    ['Continuous Stirred Tank Reactor (CSTR)', 'CSTR'],
+    ['Equilibrium Reactor', 'REQ'],
+    ['Gibbs Reactor', 'RGIBBS'],
+    ['Plug-Flow Reactor (PRF)', 'PFR'],
+    ['Gibbs Reactor (Reaktoro)', 'RK'],
+    ['Chemsep Column', ' CSCOL'],
+    ['Distillation Column', 'DCOL'],
+    ['Absorption/Extraction Column', ' ABS'],
+    ['Shortcut Column', 'SCOL'],
+    ['Filter', 'FLT'],
+    ['Solids Separator', 'SS'],
+    ['Hydroelectric Turbine', 'HT'],
+    ['PEM Fuel Cell (Amphlett)', 'FCA'],
+    ['Solar Panel', 'SP'],
+    ['Water Electrolyzer', 'WE'],
+    ['Wind Turbine', 'WT'],
+    ['Python Script', 'CUSTOM'],
+    ['Flowsheet', 'FS'],
+    ['CAPE-OPEN Unit Operation', 'CO'],
+    ['Spreadsheet', 'SHEET'],
+    ['Input Box', 'IN'],
+    ['Switch', 'SW'],
+    ['Controller Block', 'C'],
+    ['Energy Recycle Block', 'ER'],
+    ['Recycle Block', 'R'],
+    ['Specification Block', 'SP'],
+    ['Analog Gauge', 'AG'],
+    ['Digital Gauge', 'DG'],
+    ['Level Gauge', 'LG'],
+    ['PID Controller', 'PID'],
+    ['Dummy Unit Operation', 'DUO']
+];
+
 export default function main(el) {
-    if (!mxClient.isBrowserSupported()) {
+    if (!mxClient.isBrowserSupported()) { //Проверка поддержки браузера
         mxUtils.error("Browser is not supported!", 200, false);
     } else {
 
@@ -437,6 +499,11 @@ export default function main(el) {
         new mxRubberband(graph);
         new mxKeyHandler(graph);
 
+        graph.setConnectable(true);
+        graph.setPortsEnabled(false);
+
+        let ports = new Array();
+
         graph.graphHandler.removeCellsFromParent = false;
 
         graph.autoSizeCellsOnAdd = true;
@@ -445,11 +512,12 @@ export default function main(el) {
             return this.isCellsLocked();
         };
 
-        graph.isCellResizable = function (cell) {
+        graph.isCellResizable = function(cell) {
             let geo = this.model.getGeometry(cell);
 
-            return geo == null || !geo.relative;
+            return geo == null;
         };
+
 
         graph.getLabel = function (cell) {
             let label = this.labelsVisible ? this.convertValueToString(cell) : "";
@@ -472,7 +540,6 @@ export default function main(el) {
             return this.model.isCollapsed(cell);
         };
 
-
         graph.isLabelClipped = function (cell) {
             let geometry = this.model.getGeometry(cell);
 
@@ -483,23 +550,161 @@ export default function main(el) {
 
         graph.getModel().beginUpdate();
 
+        // Для соединения клеток графа. Длинный кусок кода
+
+        mxConstraintHandler.prototype.pointImage = new mxImage('images/dot.gif', 10, 10);
+        ports['w'] = {x: 0, y: 0.5, perimeter: true, constraint: 'west'};
+        ports['e'] = {x: 1, y: 0.5, perimeter: true, constraint: 'east'};
+        ports['n'] = {x: 0.5, y: 0, perimeter: true, constraint: 'north'};
+        ports['s'] = {x: 0.5, y: 1, perimeter: true, constraint: 'south'};
+
+        let ports2 = new Array();
+
+        ports2['in1'] = {x: 0, y: 0, perimeter: true, constraint: 'west'};
+        ports2['in2'] = {x: 0, y: 0.25, perimeter: true, constraint: 'west'};
+        ports2['in3'] = {x: 0, y: 0.5, perimeter: true, constraint: 'west'};
+        ports2['in4'] = {x: 0, y: 0.75, perimeter: true, constraint: 'west'};
+        ports2['in5'] = {x: 0, y: 1, perimeter: true, constraint: 'west'};
+
+        ports2['out1'] = {x: 0.5, y: 0, perimeter: true, constraint: 'north east'};
+        ports2['out2'] = {x: 1, y: 0.5, perimeter: true, constraint: 'east'};
+        ports2['out3'] = {x: 0.5, y: 1, perimeter: true, constraint: 'south east'};
+
+        mxShape.prototype.getPorts = function () {
+            return ports;
+        };
+
+        mxTriangle.prototype.getPorts = function () {
+            return ports2;
+        };
+
+        graph.connectionHandler.isConnectableCell = function (cell) {
+            return false;
+        };
+        mxEdgeHandler.prototype.isConnectableCell = function (cell) {
+            return graph.connectionHandler.isConnectableCell(cell);
+        };
+
+        graph.view.getTerminalPort = function (state, terminal, source) {
+            return terminal;
+        };
+
+        graph.getAllConnectionConstraints = function (terminal, source) {
+            if (terminal != null && terminal.shape != null &&
+                terminal.shape.stencil != null) {
+                if (terminal.shape.stencil != null) {
+                    return terminal.shape.stencil.constraints;
+                }
+            } else if (terminal != null && this.model.isVertex(terminal.cell)) {
+                if (terminal.shape != null) {
+                    let ports = terminal.shape.getPorts();
+                    let cstrs = new Array();
+
+                    for (let id in ports) {
+                        let port = ports[id];
+
+                        let cstr = new mxConnectionConstraint(new mxPoint(port.x, port.y), port.perimeter);
+                        cstr.id = id;
+                        cstrs.push(cstr);
+                    }
+
+                    return cstrs;
+                }
+            }
+
+            return null;
+        };
+
+        graph.setConnectionConstraint = function (edge, terminal, source, constraint) {
+            if (constraint != null) {
+                let key = (source) ? mxConstants.STYLE_SOURCE_PORT : mxConstants.STYLE_TARGET_PORT;
+
+                if (constraint == null || constraint.id == null) {
+                    this.setCellStyles(key, null, [edge]);
+                } else if (constraint.id != null) {
+                    this.setCellStyles(key, constraint.id, [edge]);
+                }
+            }
+        };
+        graph.getConnectionConstraint = function (edge, terminal, source) {
+            let key = (source) ? mxConstants.STYLE_SOURCE_PORT : mxConstants.STYLE_TARGET_PORT;
+            let id = edge.style[key];
+
+            if (id != null) {
+                let c = new mxConnectionConstraint(null, null);
+                c.id = id;
+                return c;
+            }
+            return null;
+        };
+
+        const graphGetConnectionPoint = graph.getConnectionPoint;
+        graph.getConnectionPoint = function (vertex, constraint) {
+            if (constraint.id != null && vertex != null && vertex.shape != null) {
+                let port = vertex.shape.getPorts()[constraint.id];
+
+                if (port != null) {
+                    constraint = new mxConnectionConstraint(new mxPoint(port.x, port.y), port.perimeter);
+                }
+            }
+
+            return graphGetConnectionPoint.apply(this, arguments);
+        };
+
+
+        // Создание элементов графа под нужные фигуры
+                let style = new Object();
+                for (let i = 0; i < figures.length; i++) {
+                    if (i == 0) {
+                        style[mxConstants.STYLE_SHAPE] = mxConstants.SHAPE_IMAGE;
+                        style[mxConstants.STYLE_FILLCOLOR] = '#FFFFFF';
+
+                        style[mxConstants.STYLE_PERIMETER] = mxPerimeter.RectanglePerimeter;
+                        style[mxConstants.STYLE_FONTCOLOR] = '#FFFFFF';
+                    } else {
+                        style = mxUtils.clone(style);
+                    }
+                    style[mxConstants.STYLE_IMAGE] = 'images/' + figures[i][0].replace(/\W*/gi, '')  + '.png';
+                    graph.getStylesheet().putCellStyle('\'' + figures[i][0].toUpperCase().replace(/\W*/gi, '') + '\'', style);
+                }
+
         let arr = []; //Список вершин, специально вынесла наружу
+        //Справочник сопоставления типа и фигуры
+        function switchType(productName) {
+            //return 'ROUNDED;strokeColor=red;fillColor=green';
+            return '\'' + productName.toUpperCase().replace(/\W*/gi, '') + '\''; // Выгрузить точный справочник всех фигур по наименованиям
+        }
+
         function graphCreate(dic) {
             //Создаем вершины
             for (let key in dic) {
                 // mxGraph.insertVertex(parent, id, value, x, y, width, height, style)
-                arr.push(graph.insertVertex(parent, key, null, 20 + Math.floor(Math.random() * 100), 20 + Math.floor(Math.random() * 100), 50, 30,'shape=triangle;perimeter=trianglePerimeter'));
-                //Подпись вершин графа, если нужна
-                graph.insertVertex(arr[arr.length - 1], null, dic[key].custom_name, 0.5, 1.3, 0, 0, null, true);
+                // Придется запихнуть в айдишник ячейки: айди и тип
+                arr.push(graph.insertVertex(parent, key + '/' + dic[key].ProductName, null, 20 + Math.floor(Math.random() * 100), 20 + Math.floor(Math.random() * 100), 70, 70, switchType(dic[key].ProductName)));
+
+                //Подпись вершин графа
+                let check = 1;
+                for (let j = 0; j < arr.length; j++) {
+                    if (arr[j].id.split('/')[1].toUpperCase().replace(/\W*/gi, '') === dic[key].ProductName.toUpperCase().replace(/\W*/gi, '')) check++;
+                }
+                for (let j = 0; j < figures.length; j++) {
+                    if (figures[j][0].toUpperCase().replace(/\W*/gi, '') === dic[key].ProductName.toUpperCase().replace(/\W*/gi, '')) {
+                        console.log(`figures[j][0] = ${figures[j][0]}  
+                    dic[key].ProductName = ${dic[key].ProductName}`)
+                        graph.insertVertex(arr[arr.length - 1], null, figures[j][1] + ' - ' + (check + 1), 0.5, 1.3, 0, 0, null, true);
+                    }
+                }
+
+                check = 1;
+
             }
             //Создаем ребра графа
             for (let key in dic) {
                 for (let out in dic[key].connections) {
                     for (let k = 0; k < arr.length; k++) {
-                        if (key == arr[k].id) {
+                        if (key === arr[k].id.split('/')[0]) {
                             for (let j = 0; j < arr.length; j++) {
-                                if (out.length > 0 && dic[key].connections[out] == arr[j].id) {
-                                    //mxGraph.insertEdge(parent, id, value, source, target, style)
+                                if (out.length > 0 && dic[key].connections[out] === arr[j].id.split('/')[0]) {
                                     graph.insertEdge(parent, null, null, arr[k], arr[j]);
                                 }
                             }
