@@ -1,7 +1,7 @@
 import './index.css';
-
+import {model} from "./js/obj";
+import {abbreviationDictionary} from "./js/abbreviationDictionary";
 const $ = require('jquery');
-
 let dic = {
     "MAT-bb1cd349-fd8d-474e-9529-7facedb48f7f": {
         "ProductName": "Material Stream", "custom_name": "23", "connections": {}, "properties": {
@@ -412,6 +412,7 @@ const {
     mxClient,
     mxGraphModel,
     mxGraph,
+    mxGraphHandler,
     mxRubberband,
     mxKeyHandler,
     mxUtils,
@@ -429,61 +430,9 @@ const {
     mxPoint,
     mxConstraintHandler,
     mxImage,
-    mxEdgeHandler
+    mxEdgeHandler,
+    mxArrowConnector
 } = new mxGraphFactory();
-
-const figures = [
-    ['Material Stream', 'MS'],
-    ['Energy Stream', 'E'],
-    ['Orifice Plate ', 'OP'],
-    ['Compressor', 'C'],
-    ['Pipe Segment', 'PIPE'],
-    ['Pump', 'PUMP'],
-    ['Expander (Turbine)', 'X'],
-    ['Valve', 'VALVE'],
-    ['Compound Separator', 'CS'],
-    ['Tank', 'TANK'],
-    ['Gas-Liquid Separator', 'V'],
-    ['Stream Mixer', 'MIX'],
-    ['Stream Splitter', 'SPL'],
-    ['Energy Mixer', 'EMIX'],
-    ['Cooler', 'CL'],
-    ['Heater', 'HT'],
-    ['Heat Exchanger', 'HX'],
-    ['Air Cooler', 'AC'],
-    ['Conversion Reactor', 'RCONV'],
-    ['Continuous Stirred Tank Reactor (CSTR)', 'CSTR'],
-    ['Equilibrium Reactor', 'REQ'],
-    ['Gibbs Reactor', 'RGIBBS'],
-    ['Plug-Flow Reactor (PRF)', 'PFR'],
-    ['Gibbs Reactor (Reaktoro)', 'RK'],
-    ['Chemsep Column', ' CSCOL'],
-    ['Distillation Column', 'DCOL'],
-    ['Absorption/Extraction Column', ' ABS'],
-    ['Shortcut Column', 'SCOL'],
-    ['Filter', 'FLT'],
-    ['Solids Separator', 'SS'],
-    ['Hydroelectric Turbine', 'HT'],
-    ['PEM Fuel Cell (Amphlett)', 'FCA'],
-    ['Solar Panel', 'SP'],
-    ['Water Electrolyzer', 'WE'],
-    ['Wind Turbine', 'WT'],
-    ['Python Script', 'CUSTOM'],
-    ['Flowsheet', 'FS'],
-    ['CAPE-OPEN Unit Operation', 'CO'],
-    ['Spreadsheet', 'SHEET'],
-    ['Input Box', 'IN'],
-    ['Switch', 'SW'],
-    ['Controller Block', 'C'],
-    ['Energy Recycle Block', 'ER'],
-    ['Recycle Block', 'R'],
-    ['Specification Block', 'SP'],
-    ['Analog Gauge', 'AG'],
-    ['Digital Gauge', 'DG'],
-    ['Level Gauge', 'LG'],
-    ['PID Controller', 'PID'],
-    ['Dummy Unit Operation', 'DUO']
-];
 
 export default function main(el) {
     if (!mxClient.isBrowserSupported()) { //Проверка поддержки браузера
@@ -495,7 +444,7 @@ export default function main(el) {
 
         let graph = new mxGraph(el);
         graph.htmlLabels = true;
-        graph.vertexLabelsMovable = true;
+        graph.vertexLabelsMovable = false;
         new mxRubberband(graph);
         new mxKeyHandler(graph);
 
@@ -511,11 +460,11 @@ export default function main(el) {
         graph.isCellLocked = function (cell) {
             return this.isCellsLocked();
         };
-
         graph.isCellResizable = function(cell) {
             let geo = this.model.getGeometry(cell);
 
             return geo == null;
+            return this.isCellResizable();
         };
 
 
@@ -551,7 +500,6 @@ export default function main(el) {
         graph.getModel().beginUpdate();
 
         // Для соединения клеток графа. Длинный кусок кода
-
         mxConstraintHandler.prototype.pointImage = new mxImage('images/dot.gif', 10, 10);
         ports['w'] = {x: 0, y: 0.5, perimeter: true, constraint: 'west'};
         ports['e'] = {x: 1, y: 0.5, perimeter: true, constraint: 'east'};
@@ -607,11 +555,9 @@ export default function main(el) {
                         cstr.id = id;
                         cstrs.push(cstr);
                     }
-
                     return cstrs;
                 }
             }
-
             return null;
         };
 
@@ -651,52 +597,47 @@ export default function main(el) {
             return graphGetConnectionPoint.apply(this, arguments);
         };
 
-
         // Создание элементов графа под нужные фигуры
                 let style = new Object();
-                for (let i = 0; i < figures.length; i++) {
+                for (let i = 0; i < abbreviationDictionary.length; i++) {
                     if (i == 0) {
                         style[mxConstants.STYLE_SHAPE] = mxConstants.SHAPE_IMAGE;
                         style[mxConstants.STYLE_FILLCOLOR] = '#FFFFFF';
-
                         style[mxConstants.STYLE_PERIMETER] = mxPerimeter.RectanglePerimeter;
-                        style[mxConstants.STYLE_FONTCOLOR] = '#FFFFFF';
+                        style[mxConstants.STYLE_RESIZABLE] = 0;
                     } else {
                         style = mxUtils.clone(style);
                     }
-                    style[mxConstants.STYLE_IMAGE] = 'images/' + figures[i][0].replace(/\W*/gi, '')  + '.png';
-                    graph.getStylesheet().putCellStyle('\'' + figures[i][0].toUpperCase().replace(/\W*/gi, '') + '\'', style);
+                    style[mxConstants.STYLE_IMAGE] = 'images/' + abbreviationDictionary[i][0].replace(/\W*/gi, '')  + '.png';
+                    graph.getStylesheet().putCellStyle('\'' + abbreviationDictionary[i][0].toUpperCase().replace(/\W*/gi, '') + '\'', style);
                 }
 
         let arr = []; //Список вершин, специально вынесла наружу
-        //Справочник сопоставления типа и фигуры
+        //Сопоставление типа и фигуры
         function switchType(productName) {
-            //return 'ROUNDED;strokeColor=red;fillColor=green';
             return '\'' + productName.toUpperCase().replace(/\W*/gi, '') + '\''; // Выгрузить точный справочник всех фигур по наименованиям
         }
 
-        function graphCreate(dic) {
+        function graphCreate(model) {
             //Создаем вершины
-            for (let key in dic) {
+            for (let key in model.DWSIM_Simulation_Data.SimulationObjects.SimulationObject) {
                 // mxGraph.insertVertex(parent, id, value, x, y, width, height, style)
                 // Придется запихнуть в айдишник ячейки: айди и тип
-                arr.push(graph.insertVertex(parent, key + '/' + dic[key].ProductName, null, 20 + Math.floor(Math.random() * 100), 20 + Math.floor(Math.random() * 100), 70, 70, switchType(dic[key].ProductName)));
+                let productName = model.DWSIM_Simulation_Data.SimulationObjects.SimulationObject[key].ProductName;
+                let name = model.DWSIM_Simulation_Data.SimulationObjects.SimulationObject[key].Name;
+                arr.push(graph.insertVertex(parent, name + '/' + productName, null, 20 + Math.floor(Math.random() * 100), 20 + Math.floor(Math.random() * 100), 70, 70, switchType(productName)));
 
                 //Подпись вершин графа
                 let check = 1;
                 for (let j = 0; j < arr.length; j++) {
-                    if (arr[j].id.split('/')[1].toUpperCase().replace(/\W*/gi, '') === dic[key].ProductName.toUpperCase().replace(/\W*/gi, '')) check++;
+                    if (arr[j].id.split('/')[1].toUpperCase().replace(/\W*/gi, '') === productName.toUpperCase().replace(/\W*/gi, '')) check++;
                 }
-                for (let j = 0; j < figures.length; j++) {
-                    if (figures[j][0].toUpperCase().replace(/\W*/gi, '') === dic[key].ProductName.toUpperCase().replace(/\W*/gi, '')) {
-                        console.log(`figures[j][0] = ${figures[j][0]}  
-                    dic[key].ProductName = ${dic[key].ProductName}`)
-                        graph.insertVertex(arr[arr.length - 1], null, figures[j][1] + ' - ' + (check + 1), 0.5, 1.3, 0, 0, null, true);
+                for (let j = 0; j < abbreviationDictionary.length; j++) {
+                    if (abbreviationDictionary[j][0].toUpperCase().replace(/\W*/gi, '') === productName.toUpperCase().replace(/\W*/gi, '')) {
+                        graph.insertVertex(arr[arr.length - 1], null, abbreviationDictionary[j][1] + ' - ' + (check + 1), 0.5, 1.3, 0, 0, null, true);
                     }
                 }
-
                 check = 1;
-
             }
             //Создаем ребра графа
             for (let key in dic) {
@@ -705,13 +646,14 @@ export default function main(el) {
                         if (key === arr[k].id.split('/')[0]) {
                             for (let j = 0; j < arr.length; j++) {
                                 if (out.length > 0 && dic[key].connections[out] === arr[j].id.split('/')[0]) {
-                                    graph.insertEdge(parent, null, null, arr[k], arr[j]);
+                                    graph.insertEdge(parent, null, null, arr[k], arr[j], 'strokeWidth=3;endArrow=none;endSize=2;endFill=1;strokeColor=black;rounded=1;');
                                 }
                             }
                         }
                     }
                 }
             }
+            //Упорядочевание в виде дерева
             let layout = new mxCompactTreeLayout(graph);
 
             layout.execute(parent);
@@ -719,8 +661,7 @@ export default function main(el) {
 
         try {
             //Создание графа
-            graphCreate(dic);
-
+            graphCreate(model);
         } finally {
             graph.getModel().endUpdate();
         }
