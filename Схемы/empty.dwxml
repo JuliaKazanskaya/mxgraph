@@ -1,0 +1,781 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<DWSIM_Simulation_Data>
+  <GeneralInfo>
+    <BuildVersion>8.2.1.0</BuildVersion>
+    <BuildDate>2000-01-02T00:00:00</BuildDate>
+    <OSInfo>Microsoft Windows Server 2019 Datacenter, Version 10.0.17763.0, Win32NT Platform</OSInfo>
+    <SavedOn>2022-12-01T23:54:55.5094107+03:00</SavedOn>
+    <SavedFromClassicUI>true</SavedFromClassicUI>
+  </GeneralInfo>
+  <SimulationObjects />
+  <Settings>
+    <Type>DWSIM.SharedClasses.DWSIM.Flowsheet.FlowsheetVariables</Type>
+    <SimulationMode></SimulationMode>
+    <BackupFileName>10111412.dwbcs</BackupFileName>
+    <FilePath></FilePath>
+    <FlowsheetQuickConnect>false</FlowsheetQuickConnect>
+    <FlowsheetShowCalculationQueue>false</FlowsheetShowCalculationQueue>
+    <FlowsheetShowConsoleWindow>false</FlowsheetShowConsoleWindow>
+    <FlowsheetShowCOReportsWindow>false</FlowsheetShowCOReportsWindow>
+    <FlowsheetShowWatchWindow>false</FlowsheetShowWatchWindow>
+    <FlowsheetMultiSelectMode>false</FlowsheetMultiSelectMode>
+    <FlowsheetSnapToGrid>false</FlowsheetSnapToGrid>
+    <FlowsheetDisplayGrid>false</FlowsheetDisplayGrid>
+    <FractionNumberFormat>G8</FractionNumberFormat>
+    <Key>5E2BDA8C72105C24918338C7D7B6E5ED327AF2F3</Key>
+    <NumberFormat>G6</NumberFormat>
+    <Password></Password>
+    <SimulationAuthor>MSK\doparin</SimulationAuthor>
+    <SimulationComments></SimulationComments>
+    <SimulationName>MySimulation_26</SimulationName>
+    <UsePassword>false</UsePassword>
+    <SelectedUnitSystem1>
+      <Type>DWSIM.SharedClasses.SystemsOfUnits.SI</Type>
+      <accel>m2/s</accel>
+      <activity>Pa</activity>
+      <activityCoefficient>-</activityCoefficient>
+      <area>m2</area>
+      <cakeresistance>m/kg</cakeresistance>
+      <cinematic_viscosity>m2/s</cinematic_viscosity>
+      <compressibility>1/Pa</compressibility>
+      <compressibilityfactor>-</compressibilityfactor>
+      <deltaP>Pa</deltaP>
+      <deltaT>K.</deltaT>
+      <density>kg/m3</density>
+      <diameter>mm</diameter>
+      <distance>m</distance>
+      <enthalpy>kJ/kg</enthalpy>
+      <entropy>kJ/[kg.K]</entropy>
+      <excessEnthalpy>kJ/kg</excessEnthalpy>
+      <excessEntropy>kJ/[kg.K]</excessEntropy>
+      <force>N</force>
+      <foulingfactor>K.m2/W</foulingfactor>
+      <fugacity>Pa</fugacity>
+      <fugacityCoefficient>-</fugacityCoefficient>
+      <gor>m3/m3</gor>
+      <head>m</head>
+      <heat_transf_coeff>W/[m2.K]</heat_transf_coeff>
+      <heatCapacityCp>kJ/[kg.K]</heatCapacityCp>
+      <heatCapacityCv>kJ/[kg.K]</heatCapacityCv>
+      <heatflow>kW</heatflow>
+      <idealGasHeatCapacity>kJ/[kg.K]</idealGasHeatCapacity>
+      <jouleThomsonCoefficient>K/Pa</jouleThomsonCoefficient>
+      <kvalue>-</kvalue>
+      <logfugacityCoefficient>-</logfugacityCoefficient>
+      <logKvalue>-</logKvalue>
+      <mass>kg</mass>
+      <mass_conc>kg/m3</mass_conc>
+      <massflow>kg/s</massflow>
+      <massfraction>-</massfraction>
+      <mediumresistance>m-1</mediumresistance>
+      <molar_conc>mol/m3</molar_conc>
+      <molar_enthalpy>kJ/kmol</molar_enthalpy>
+      <molar_entropy>kJ/[kmol.K]</molar_entropy>
+      <molar_volume>m3/kmol</molar_volume>
+      <molarflow>mol/s</molarflow>
+      <molarfraction>-</molarfraction>
+      <molecularWeight>kg/kmol</molecularWeight>
+      <Name>SI</Name>
+      <pdp_boilingPointTemperature>K</pdp_boilingPointTemperature>
+      <pdp_meltingTemperature>K</pdp_meltingTemperature>
+      <pressure>Pa</pressure>
+      <reac_rate>mol/[m3.s]</reac_rate>
+      <reac_rate_heterog>mol/[kg.s]</reac_rate_heterog>
+      <spec_vol>m3/kg</spec_vol>
+      <speedOfSound>m/s</speedOfSound>
+      <surfaceTension>N/m</surfaceTension>
+      <temperature>K</temperature>
+      <thermalConductivity>W/[m.K]</thermalConductivity>
+      <thermalConductivityOfLiquid>W/[m.K]</thermalConductivityOfLiquid>
+      <thermalConductivityOfVapor>W/[m.K]</thermalConductivityOfVapor>
+      <thickness>mm</thickness>
+      <time>s</time>
+      <vaporPressure>Pa</vaporPressure>
+      <velocity>m/s</velocity>
+      <viscosity>Pa.s</viscosity>
+      <viscosityOfLiquid>Pa.s</viscosityOfLiquid>
+      <viscosityOfVapor>Pa.s</viscosityOfVapor>
+      <volume>m3</volume>
+      <volumetricFlow>m3/s</volumetricFlow>
+      <diffusivity>m2/s</diffusivity>
+      <conductance>[kg/s]/[Pa^0.5]</conductance>
+    </SelectedUnitSystem1>
+    <SimultaneousAdjustSolverEnabled>true</SimultaneousAdjustSolverEnabled>
+    <SpreadsheetUseRegionalSeparator>false</SpreadsheetUseRegionalSeparator>
+    <EnergyBalanceCheck>ShowWarning</EnergyBalanceCheck>
+    <MassBalanceCheck>ShowWarning</MassBalanceCheck>
+    <EnergyBalanceRelativeTolerance>0.01</EnergyBalanceRelativeTolerance>
+    <MassBalanceRelativeTolerance>0.01</MassBalanceRelativeTolerance>
+    <DisplayCornerPropertyList>false</DisplayCornerPropertyList>
+    <DisplayCornerPropertyListPosition>RightBottom</DisplayCornerPropertyListPosition>
+    <DisplayFloatingPropertyTables>true</DisplayFloatingPropertyTables>
+    <DisplayCornerPropertyListFontColor>DimGray</DisplayCornerPropertyListFontColor>
+    <DisplayCornerPropertyListFontName>Consolas</DisplayCornerPropertyListFontName>
+    <DisplayCornerPropertyListFontSize>8</DisplayCornerPropertyListFontSize>
+    <DisplayCornerPropertyListPadding>4</DisplayCornerPropertyListPadding>
+    <DefaultFloatingTableCompoundAmountBasis>Molar_Fractions</DefaultFloatingTableCompoundAmountBasis>
+    <DisplayFloatingTableCompoundAmounts>true</DisplayFloatingTableCompoundAmounts>
+    <SpreadsheetUnitLockingMode>true</SpreadsheetUnitLockingMode>
+    <CompoundOrderingMode>AsAdded</CompoundOrderingMode>
+    <FlowsheetControlPanelMode>false</FlowsheetControlPanelMode>
+    <SkipEquilibriumCalculationOnDefinedStreams>true</SkipEquilibriumCalculationOnDefinedStreams>
+    <ForceStreamPhase>None</ForceStreamPhase>
+    <DisplayUserDefinedPropertiesEditor>false</DisplayUserDefinedPropertiesEditor>
+    <LabelFontSize>10</LabelFontSize>
+    <FlowsheetColorTheme>0</FlowsheetColorTheme>
+    <RegularFontName>OpenSans_SemiCondensed-Regular</RegularFontName>
+    <BoldFontName>OpenSans_SemiCondensed-SemiBold</BoldFontName>
+    <ItalicFontName>OpenSans_SemiCondensed-Italic</ItalicFontName>
+    <BoldItalicFontName>OpenSans_SemiCondensed-MediumItalic</BoldItalicFontName>
+    <DisplayEnergyStreamPowerValue>true</DisplayEnergyStreamPowerValue>
+    <DisplayMaterialStreamMassFlowValue>false</DisplayMaterialStreamMassFlowValue>
+    <DisplayMaterialStreamMolarFlowValue>false</DisplayMaterialStreamMolarFlowValue>
+    <DisplayMaterialStreamVolFlowValue>false</DisplayMaterialStreamVolFlowValue>
+    <DisplayMaterialStreamTemperatureValue>false</DisplayMaterialStreamTemperatureValue>
+    <DisplayMaterialStreamPressureValue>false</DisplayMaterialStreamPressureValue>
+    <DisplayMaterialStreamEnergyFlowValue>false</DisplayMaterialStreamEnergyFlowValue>
+    <AddObjectsWithStreams>2</AddObjectsWithStreams>
+    <DisplayDynamicPropertyValues>true</DisplayDynamicPropertyValues>
+    <CurrentWeather>
+      <Type>DWSIM.SharedClasses.WeatherData</Type>
+      <CurrentCondition>Sunny</CurrentCondition>
+      <WindSpeed_km_h>5</WindSpeed_km_h>
+      <RelativeHumidity_pct>30</RelativeHumidity_pct>
+      <Temperature_C>30</Temperature_C>
+      <SolarIrradiation_kWh_m2>1</SolarIrradiation_kWh_m2>
+      <Latitude>0</Latitude>
+      <Longitude>0</Longitude>
+      <AtmosphericPressure_Pa>101325</AtmosphericPressure_Pa>
+    </CurrentWeather>
+    <VisibleProperties>
+      <ObjectType Value="AbsorptionColumn">
+        <PropertyID Value="PROP_AC_0" />
+        <PropertyID Value="PROP_AC_1" />
+        <PropertyID Value="PROP_AC_2" />
+      </ObjectType>
+      <ObjectType Value="Adjust">
+        <PropertyID Value="MinVal" />
+        <PropertyID Value="MaxVal" />
+        <PropertyID Value="AdjustValue" />
+        <PropertyID Value="Tolerance" />
+        <PropertyID Value="StepSize" />
+        <PropertyID Value="MaximumIterations" />
+      </ObjectType>
+      <ObjectType Value="AnalogGauge" />
+      <ObjectType Value="CapeOpenUO" />
+      <ObjectType Value="ComponentSeparator">
+        <PropertyID Value="PROP_CP_0" />
+        <PropertyID Value="SpecifiedStreamIndex" />
+      </ObjectType>
+      <ObjectType Value="Compressor">
+        <PropertyID Value="PROP_CO_0" />
+        <PropertyID Value="PROP_CO_1" />
+        <PropertyID Value="PROP_CO_2" />
+        <PropertyID Value="PROP_CO_3" />
+        <PropertyID Value="PROP_CO_4" />
+        <PropertyID Value="PolytropicEfficiency" />
+        <PropertyID Value="AdiabaticCoefficient" />
+        <PropertyID Value="PolytropicCoefficient" />
+        <PropertyID Value="AdiabaticHead" />
+        <PropertyID Value="PolytropicHead" />
+        <PropertyID Value="RotationSpeed" />
+      </ObjectType>
+      <ObjectType Value="Cooler">
+        <PropertyID Value="Flow Conductance" />
+        <PropertyID Value="Volume" />
+        <PropertyID Value="Minimum Pressure" />
+        <PropertyID Value="Initialize using Inlet Stream" />
+        <PropertyID Value="Reset Content" />
+        <PropertyID Value="PROP_CL_0" />
+        <PropertyID Value="PROP_CL_1" />
+        <PropertyID Value="PROP_CL_2" />
+        <PropertyID Value="PROP_CL_3" />
+        <PropertyID Value="PROP_CL_4" />
+        <PropertyID Value="PROP_CL_5" />
+      </ObjectType>
+      <ObjectType Value="CustomUO" />
+      <ObjectType Value="DigitalGauge" />
+      <ObjectType Value="DistillationColumn">
+        <PropertyID Value="PROP_DC_2" />
+        <PropertyID Value="PROP_DC_5" />
+        <PropertyID Value="PROP_DC_6" />
+        <PropertyID Value="PROP_DC_7" />
+        <PropertyID Value="PROP_DC_8" />
+        <PropertyID Value="Condenser_Specification_Value" />
+        <PropertyID Value="Reboiler_Specification_Value" />
+        <PropertyID Value="Global_Stage_Efficiency" />
+        <PropertyID Value="Condenser_Calculated_Value" />
+        <PropertyID Value="Reboiler_Calculated_Value" />
+      </ObjectType>
+      <ObjectType Value="DummyUnitOperation" />
+      <ObjectType Value="EnergyRecycle">
+        <PropertyID Value="PROP_ER_0" />
+        <PropertyID Value="PROP_ER_1" />
+        <PropertyID Value="PROP_ER_2" />
+      </ObjectType>
+      <ObjectType Value="EnergyStream">
+        <PropertyID Value="PROP_ES_0" />
+      </ObjectType>
+      <ObjectType Value="ExcelUO">
+        <PropertyID Value="Calc_dQ" />
+      </ObjectType>
+      <ObjectType Value="Expander">
+        <PropertyID Value="PROP_TU_0" />
+        <PropertyID Value="PROP_TU_1" />
+        <PropertyID Value="PROP_TU_2" />
+        <PropertyID Value="PROP_TU_3" />
+        <PropertyID Value="PROP_TU_4" />
+        <PropertyID Value="PolytropicEfficiency" />
+        <PropertyID Value="AdiabaticCoefficient" />
+        <PropertyID Value="PolytropicCoefficient" />
+        <PropertyID Value="AdiabaticHead" />
+        <PropertyID Value="PolytropicHead" />
+        <PropertyID Value="RotationSpeed" />
+      </ObjectType>
+      <ObjectType Value="Filter">
+        <PropertyID Value="PROP_FT_0" />
+        <PropertyID Value="PROP_FT_1" />
+        <PropertyID Value="PROP_FT_2" />
+        <PropertyID Value="PROP_FT_3" />
+        <PropertyID Value="PROP_FT_4" />
+        <PropertyID Value="PROP_FT_5" />
+        <PropertyID Value="PROP_FT_6" />
+        <PropertyID Value="PROP_FT_7" />
+      </ObjectType>
+      <ObjectType Value="Flowsheet" />
+      <ObjectType Value="Heater">
+        <PropertyID Value="Flow Conductance" />
+        <PropertyID Value="Volume" />
+        <PropertyID Value="Minimum Pressure" />
+        <PropertyID Value="Initialize using Inlet Stream" />
+        <PropertyID Value="Reset Content" />
+        <PropertyID Value="PROP_HT_0" />
+        <PropertyID Value="PROP_HT_1" />
+        <PropertyID Value="PROP_HT_2" />
+        <PropertyID Value="PROP_HT_3" />
+        <PropertyID Value="PROP_HT_4" />
+        <PropertyID Value="PROP_HT_5" />
+      </ObjectType>
+      <ObjectType Value="HeatExchanger">
+        <PropertyID Value="PROP_HX_0" />
+        <PropertyID Value="PROP_HX_1" />
+        <PropertyID Value="PROP_HX_2" />
+        <PropertyID Value="PROP_HX_3" />
+        <PropertyID Value="PROP_HX_4" />
+        <PropertyID Value="PROP_HX_25" />
+        <PropertyID Value="PROP_HX_26" />
+        <PropertyID Value="PROP_HX_27" />
+        <PropertyID Value="PROP_HX_28" />
+        <PropertyID Value="PROP_HX_32" />
+        <PropertyID Value="PROP_HX_33" />
+      </ObjectType>
+      <ObjectType Value="Input" />
+      <ObjectType Value="LevelGauge" />
+      <ObjectType Value="MaterialStream">
+        <PropertyID Value="PROP_MS_0" />
+        <PropertyID Value="PROP_MS_1" />
+        <PropertyID Value="PROP_MS_2" />
+        <PropertyID Value="PROP_MS_3" />
+        <PropertyID Value="PROP_MS_4" />
+        <PropertyID Value="PROP_MS_9" />
+        <PropertyID Value="PROP_MS_10" />
+        <PropertyID Value="PROP_MS_27" />
+        <PropertyID Value="PROP_MS_130" />
+        <PropertyID Value="PROP_MS_154" />
+      </ObjectType>
+      <ObjectType Value="Mixer" />
+      <ObjectType Value="OrificePlate">
+        <PropertyID Value="PROP_OP_0" />
+        <PropertyID Value="PROP_OP_1" />
+        <PropertyID Value="PROP_OP_2" />
+        <PropertyID Value="PROP_OP_3" />
+        <PropertyID Value="PROP_OP_4" />
+        <PropertyID Value="PROP_OP_5" />
+        <PropertyID Value="PROP_OP_6" />
+        <PropertyID Value="PROP_OP_7" />
+      </ObjectType>
+      <ObjectType Value="PIDController">
+        <PropertyID Value="Active" />
+        <PropertyID Value="ManualOverride" />
+        <PropertyID Value="LastError" />
+        <PropertyID Value="CurrentError" />
+        <PropertyID Value="CumulativeError" />
+        <PropertyID Value="SetPointAbs" />
+        <PropertyID Value="Kp" />
+        <PropertyID Value="Ki" />
+        <PropertyID Value="Kd" />
+        <PropertyID Value="Output" />
+        <PropertyID Value="OutputMin" />
+        <PropertyID Value="OutputMax" />
+        <PropertyID Value="OutputAbs" />
+      </ObjectType>
+      <ObjectType Value="Pipe">
+        <PropertyID Value="PROP_PS_0" />
+        <PropertyID Value="PressureDropStatic" />
+        <PropertyID Value="PressureDropFriction" />
+        <PropertyID Value="PROP_PS_1" />
+        <PropertyID Value="PROP_PS_2" />
+        <PropertyID Value="PROP_PS_8" />
+        <PropertyID Value="PROP_PS_9" />
+      </ObjectType>
+      <ObjectType Value="Pump">
+        <PropertyID Value="PROP_PU_0" />
+        <PropertyID Value="PROP_PU_1" />
+        <PropertyID Value="PROP_PU_2" />
+        <PropertyID Value="PROP_PU_3" />
+        <PropertyID Value="PROP_PU_4" />
+        <PropertyID Value="PROP_PU_5" />
+      </ObjectType>
+      <ObjectType Value="Reactor_Conversion">
+        <PropertyID Value="Operating Pressure (Dynamics)" />
+        <PropertyID Value="Liquid Level" />
+        <PropertyID Value="Volume" />
+        <PropertyID Value="Height" />
+        <PropertyID Value="Minimum Pressure" />
+        <PropertyID Value="Initialize using Inlet Stream" />
+        <PropertyID Value="Reset Contents" />
+        <PropertyID Value="PROP_CR_0" />
+        <PropertyID Value="Calculation Mode" />
+      </ObjectType>
+      <ObjectType Value="Reactor_CSTR">
+        <PropertyID Value="Operating Pressure" />
+        <PropertyID Value="Liquid Level" />
+        <PropertyID Value="Height" />
+        <PropertyID Value="Minimum Pressure" />
+        <PropertyID Value="Initialize using Inlet Stream" />
+        <PropertyID Value="Reset Contents" />
+        <PropertyID Value="PROP_CS_0" />
+        <PropertyID Value="PROP_CS_1" />
+        <PropertyID Value="PROP_CS_2" />
+        <PropertyID Value="PROP_CS_3" />
+        <PropertyID Value="PROP_CS_4" />
+        <PropertyID Value="PROP_CS_5" />
+        <PropertyID Value="PROP_CS_6" />
+        <PropertyID Value="PROP_CS_7" />
+        <PropertyID Value="Calculation Mode" />
+      </ObjectType>
+      <ObjectType Value="Reactor_Equilibrium">
+        <PropertyID Value="Operating Pressure (Dynamics)" />
+        <PropertyID Value="Liquid Level" />
+        <PropertyID Value="Volume" />
+        <PropertyID Value="Height" />
+        <PropertyID Value="Minimum Pressure" />
+        <PropertyID Value="Initialize using Inlet Stream" />
+        <PropertyID Value="Reset Contents" />
+        <PropertyID Value="PROP_EQ_0" />
+        <PropertyID Value="PROP_EQ_1" />
+        <PropertyID Value="Calculation Mode" />
+        <PropertyID Value="Initial Gibbs Energy" />
+        <PropertyID Value="Final Gibbs Energy" />
+      </ObjectType>
+      <ObjectType Value="Reactor_Gibbs">
+        <PropertyID Value="Operating Pressure (Dynamics)" />
+        <PropertyID Value="Liquid Level" />
+        <PropertyID Value="Volume" />
+        <PropertyID Value="Height" />
+        <PropertyID Value="Minimum Pressure" />
+        <PropertyID Value="Initialize using Inlet Stream" />
+        <PropertyID Value="Reset Contents" />
+        <PropertyID Value="PROP_GR_0" />
+        <PropertyID Value="PROP_GR_1" />
+        <PropertyID Value="Calculation Mode" />
+        <PropertyID Value="Initial Gibbs Energy" />
+        <PropertyID Value="Final Gibbs Energy" />
+        <PropertyID Value="Element Balance Residue" />
+      </ObjectType>
+      <ObjectType Value="Reactor_PFR">
+        <PropertyID Value="Max Sections" />
+        <PropertyID Value="Reset Contents" />
+        <PropertyID Value="PROP_PF_0" />
+        <PropertyID Value="PROP_PF_1" />
+        <PropertyID Value="PROP_PF_2" />
+        <PropertyID Value="PROP_PF_3" />
+        <PropertyID Value="PROP_PF_4" />
+        <PropertyID Value="PROP_PF_5" />
+        <PropertyID Value="PROP_PF_6" />
+        <PropertyID Value="PROP_PF_7" />
+        <PropertyID Value="PROP_PF_8" />
+        <PropertyID Value="PROP_PF_9" />
+        <PropertyID Value="PROP_PF_10" />
+        <PropertyID Value="Calculation Mode" />
+      </ObjectType>
+      <ObjectType Value="ReboiledAbsorber">
+        <PropertyID Value="PROP_RA_0" />
+        <PropertyID Value="PROP_RA_1" />
+        <PropertyID Value="PROP_RA_2" />
+        <PropertyID Value="PROP_RA_3" />
+        <PropertyID Value="PROP_RA_4" />
+      </ObjectType>
+      <ObjectType Value="Recycle">
+        <PropertyID Value="PROP_RY_0" />
+        <PropertyID Value="PROP_RY_1" />
+        <PropertyID Value="PROP_RY_2" />
+        <PropertyID Value="PROP_RY_3" />
+        <PropertyID Value="PROP_RY_4" />
+        <PropertyID Value="PROP_RY_5" />
+        <PropertyID Value="PROP_RY_6" />
+      </ObjectType>
+      <ObjectType Value="RefluxedAbsorber">
+        <PropertyID Value="PROP_RF_0" />
+        <PropertyID Value="PROP_RF_1" />
+        <PropertyID Value="PROP_RF_2" />
+        <PropertyID Value="PROP_RF_3" />
+        <PropertyID Value="PROP_RF_4" />
+        <PropertyID Value="PROP_RF_5" />
+        <PropertyID Value="PROP_RF_6" />
+      </ObjectType>
+      <ObjectType Value="ShortcutColumn">
+        <PropertyID Value="PROP_SC_0" />
+        <PropertyID Value="PROP_SC_1" />
+        <PropertyID Value="PROP_SC_2" />
+        <PropertyID Value="PROP_SC_3" />
+        <PropertyID Value="PROP_SC_4" />
+        <PropertyID Value="PROP_SC_5" />
+        <PropertyID Value="PROP_SC_6" />
+        <PropertyID Value="PROP_SC_7" />
+        <PropertyID Value="PROP_SC_8" />
+        <PropertyID Value="PROP_SC_9" />
+        <PropertyID Value="PROP_SC_10" />
+        <PropertyID Value="PROP_SC_11" />
+        <PropertyID Value="PROP_SC_12" />
+        <PropertyID Value="PROP_SC_13" />
+        <PropertyID Value="PROP_SC_14" />
+      </ObjectType>
+      <ObjectType Value="SolidsSeparator">
+        <PropertyID Value="PROP_SS_1" />
+        <PropertyID Value="PROP_SS_2" />
+      </ObjectType>
+      <ObjectType Value="Spec">
+        <PropertyID Value="SpecMin" />
+        <PropertyID Value="SpecMax" />
+        <PropertyID Value="Expression" />
+      </ObjectType>
+      <ObjectType Value="Splitter">
+        <PropertyID Value="PROP_SP_1" />
+        <PropertyID Value="PROP_SP_2" />
+      </ObjectType>
+      <ObjectType Value="Switch" />
+      <ObjectType Value="Tank">
+        <PropertyID Value="Liquid Level" />
+        <PropertyID Value="Height" />
+        <PropertyID Value="Initialize using Inlet Stream" />
+        <PropertyID Value="Reset Content" />
+        <PropertyID Value="PROP_TK_0" />
+        <PropertyID Value="PROP_TK_1" />
+        <PropertyID Value="PROP_TK_2" />
+      </ObjectType>
+      <ObjectType Value="Valve">
+        <PropertyID Value="PROP_VA_0" />
+        <PropertyID Value="PROP_VA_1" />
+        <PropertyID Value="PROP_VA_2" />
+        <PropertyID Value="PROP_VA_3" />
+        <PropertyID Value="PROP_VA_4" />
+        <PropertyID Value="PROP_VA_5" />
+      </ObjectType>
+      <ObjectType Value="Vessel">
+        <PropertyID Value="Vessel Orientation" />
+        <PropertyID Value="Operating Pressure" />
+        <PropertyID Value="Liquid Level" />
+        <PropertyID Value="Volume" />
+        <PropertyID Value="Height" />
+        <PropertyID Value="Minimum Pressure" />
+        <PropertyID Value="Initialize using Inlet Stream" />
+        <PropertyID Value="Reset Content" />
+        <PropertyID Value="PROP_SV_0" />
+        <PropertyID Value="PROP_SV_1" />
+      </ObjectType>
+      <ObjectType Value="AirCooler2">
+        <PropertyID Value="Outlet Temperature" />
+        <PropertyID Value="Overall UA" />
+        <PropertyID Value="Heat Load" />
+        <PropertyID Value="Electrical Power Load" />
+        <PropertyID Value="Actual Air Flow" />
+        <PropertyID Value="Air Inlet Temperature" />
+        <PropertyID Value="Air Outlet Temperature" />
+        <PropertyID Value="Max Heat Exchange" />
+        <PropertyID Value="Exchanger Efficiency" />
+      </ObjectType>
+      <ObjectType Value="EnergyMixer" />
+      <ObjectType Value="HydroelectricTurbine">
+        <PropertyID Value="Efficiency" />
+        <PropertyID Value="Static Head" />
+        <PropertyID Value="Velocity Head" />
+        <PropertyID Value="Total Head" />
+        <PropertyID Value="Inlet Velocity" />
+        <PropertyID Value="Outlet Velocity" />
+        <PropertyID Value="Generated Power" />
+      </ObjectType>
+      <ObjectType Value="PEMFC_Amphlett">
+        <PropertyID Value="i-start" />
+        <PropertyID Value="i-stop" />
+        <PropertyID Value="i-step" />
+        <PropertyID Value="A" />
+        <PropertyID Value="l" />
+        <PropertyID Value="lambda" />
+        <PropertyID Value="R" />
+        <PropertyID Value="JMax" />
+        <PropertyID Value="N" />
+      </ObjectType>
+      <ObjectType Value="SolarPanel">
+        <PropertyID Value="Efficiency" />
+        <PropertyID Value="User-Defined Solar Irradiation" />
+        <PropertyID Value="Actual Solar Irradiation" />
+        <PropertyID Value="Panel Area" />
+        <PropertyID Value="Number of Panels" />
+        <PropertyID Value="Generated Power" />
+      </ObjectType>
+      <ObjectType Value="WaterElectrolyzer">
+        <PropertyID Value="Voltage" />
+        <PropertyID Value="Number of Cells" />
+        <PropertyID Value="Cell Voltage" />
+        <PropertyID Value="Waste Heat" />
+        <PropertyID Value="Current" />
+        <PropertyID Value="Electron Transfer" />
+      </ObjectType>
+      <ObjectType Value="WindTurbine">
+        <PropertyID Value="Efficiency" />
+        <PropertyID Value="User-Defined Wind Speed" />
+        <PropertyID Value="Actual Wind Speed" />
+        <PropertyID Value="User-Defined Air Temperature" />
+        <PropertyID Value="Actual Air Temperature" />
+        <PropertyID Value="User-Defined Air Pressure" />
+        <PropertyID Value="Actual Air Pressure" />
+        <PropertyID Value="User-Defined Relative Humidity" />
+        <PropertyID Value="Actual Relative Humidity" />
+        <PropertyID Value="Disk Area" />
+        <PropertyID Value="Rotor Diameter" />
+        <PropertyID Value="Number of Units" />
+        <PropertyID Value="Generated Power" />
+        <PropertyID Value="Maximum Theoretical Power" />
+        <PropertyID Value="Calculated Air Density" />
+      </ObjectType>
+      <ObjectType Value="Reactor_ReaktoroGibbs" />
+    </VisibleProperties>
+  </Settings>
+  <DynamicProperties />
+  <GraphicObjects />
+  <PropertyPackages />
+  <Compounds />
+  <ReactionSets>
+    <ReactionSet>
+      <ID>DefaultSet</ID>
+      <Name>Default Set</Name>
+      <Description>Default Reaction Set</Description>
+      <Reactions />
+    </ReactionSet>
+  </ReactionSets>
+  <Reactions />
+  <StoredSolutions />
+  <DynamicsManager>
+    <Type>DWSIM.DynamicsManager.Manager</Type>
+    <Description></Description>
+    <CurrentSchedule></CurrentSchedule>
+    <ScheduleList />
+    <EventSetList />
+    <IntegratorList />
+  </DynamicsManager>
+  <OptimizationCases>
+    <OptimizationCase>
+      <Type>DWSIM.SharedClasses.Flowsheet.Optimization.OptimizationCase</Type>
+      <name>optcase0</name>
+      <description></description>
+      <stats></stats>
+      <solvm>AL_BRENT</solvm>
+      <maxits>100</maxits>
+      <tolerance>1E-06</tolerance>
+      <epsX>0.001</epsX>
+      <epsF>0.001</epsF>
+      <epsG>0.001</epsG>
+      <epsilon>0.001</epsilon>
+      <barriermultiplier>0.0001</barriermultiplier>
+      <numdevscheme>2</numdevscheme>
+      <boundvariables>false</boundvariables>
+      <objfunctype>Variable</objfunctype>
+      <type>Minimization</type>
+      <expression></expression>
+      <Variables />
+    </OptimizationCase>
+  </OptimizationCases>
+  <SensitivityAnalysis>
+    <SensitivityAnalysisCase>
+      <Type>DWSIM.SharedClasses.Flowsheet.Optimization.SensitivityAnalysisCase</Type>
+      <iv1>
+        <Type>DWSIM.SharedClasses.Flowsheet.Optimization.SAVariable</Type>
+        <objectID></objectID>
+        <objectTAG></objectTAG>
+        <propID></propID>
+        <unit></unit>
+        <points>5</points>
+        <name></name>
+        <id></id>
+        <currentvalue>0</currentvalue>
+      </iv1>
+      <iv2>
+        <Type>DWSIM.SharedClasses.Flowsheet.Optimization.SAVariable</Type>
+        <objectID></objectID>
+        <objectTAG></objectTAG>
+        <propID></propID>
+        <unit></unit>
+        <points>5</points>
+        <name></name>
+        <id></id>
+        <currentvalue>0</currentvalue>
+      </iv2>
+      <dv>
+        <Type>DWSIM.SharedClasses.Flowsheet.Optimization.SAVariable</Type>
+        <objectID></objectID>
+        <objectTAG></objectTAG>
+        <propID></propID>
+        <unit></unit>
+        <points>5</points>
+        <name></name>
+        <id></id>
+        <currentvalue>0</currentvalue>
+      </dv>
+      <name>SACase0</name>
+      <description></description>
+      <stats></stats>
+      <numvar>1</numvar>
+      <depvartype>Variable</depvartype>
+      <expression></expression>
+      <IV1>
+        <Type>DWSIM.SharedClasses.Flowsheet.Optimization.SAVariable</Type>
+        <objectID></objectID>
+        <objectTAG></objectTAG>
+        <propID></propID>
+        <unit></unit>
+        <points>5</points>
+        <name></name>
+        <id></id>
+        <currentvalue>0</currentvalue>
+      </IV1>
+      <IV2>
+        <Type>DWSIM.SharedClasses.Flowsheet.Optimization.SAVariable</Type>
+        <objectID></objectID>
+        <objectTAG></objectTAG>
+        <propID></propID>
+        <unit></unit>
+        <points>5</points>
+        <name></name>
+        <id></id>
+        <currentvalue>0</currentvalue>
+      </IV2>
+      <DV>
+        <Type>DWSIM.SharedClasses.Flowsheet.Optimization.SAVariable</Type>
+        <objectID></objectID>
+        <objectTAG></objectTAG>
+        <propID></propID>
+        <unit></unit>
+        <points>5</points>
+        <name></name>
+        <id></id>
+        <currentvalue>0</currentvalue>
+      </DV>
+      <Variables />
+      <DepVariables />
+    </SensitivityAnalysisCase>
+  </SensitivityAnalysis>
+  <PetroleumAssays />
+  <WatchItems />
+  <ScriptItems />
+  <ChartItems />
+  <Spreadsheet>
+    <RGFData>{"MAIN":"{\"?xml\":{\"@version\":\"1.0\"},\"grid\":{\"@xmlns:xsd\":\"http://www.w3.org/2001/XMLSchema\",\"@xmlns:xsi\":\"http://www.w3.org/2001/XMLSchema-instance\",\"head\":{\"meta\":{\"culture\":\"en-US\",\"editor\":\"ReoGrid Core\",\"core-ver\":\"2.1.0.0\"},\"rows\":\"65536\",\"cols\":\"100\",\"default-row-height\":\"20\",\"default-col-width\":\"70\",\"settings\":{\"@meta\":\"30475026398\"},\"script\":null},\"style\":{\"@font\":\"Arial\",\"@font-size\":\"10\",\"@align\":\"general\",\"@valign\":\"middle\"},\"rows\":null,\"cols\":null,\"v-borders\":null,\"h-borders\":null,\"cells\":null}}"}</RGFData>
+  </Spreadsheet>
+  <PanelLayout>&lt;?xml version="1.0" encoding="utf-8"?&gt;
+&lt;!--DockPanel configuration file. Author: Weifen Luo, all rights reserved.--&gt;
+&lt;!--!!! AUTOMATICALLY GENERATED FILE. DO NOT MODIFY !!!--&gt;
+&lt;DockPanel FormatVersion="1.0" DockLeftPortion="379" DockRightPortion="0.203007518796992" DockTopPortion="0.25" DockBottomPortion="0.252227705943669" ActiveDocumentPane="0" ActivePane="0"&gt;
+  &lt;Contents Count="12"&gt;
+    &lt;Content ID="0" PersistString="DWSIM.LogPanel" AutoHidePortion="0.252227705943669" IsHidden="False" IsFloat="False" /&gt;
+    &lt;Content ID="1" PersistString="DWSIM.MaterialStreamPanel" AutoHidePortion="0.25" IsHidden="False" IsFloat="False" /&gt;
+    &lt;Content ID="2" PersistString="DWSIM.WatchPanel" AutoHidePortion="0.252227705943669" IsHidden="False" IsFloat="False" /&gt;
+    &lt;Content ID="3" PersistString="DWSIM.frmProps" AutoHidePortion="379" IsHidden="True" IsFloat="False" /&gt;
+    &lt;Content ID="4" PersistString="DWSIM.FormCharts" AutoHidePortion="0.25" IsHidden="False" IsFloat="False" /&gt;
+    &lt;Content ID="5" PersistString="DWSIM.FormDynamicsManager" AutoHidePortion="0.25" IsHidden="False" IsFloat="False" /&gt;
+    &lt;Content ID="6" PersistString="DWSIM.FormDynamicsIntegratorControl" AutoHidePortion="0.369804903093313" IsHidden="True" IsFloat="False" /&gt;
+    &lt;Content ID="7" PersistString="DWSIM.FormFileExplorer" AutoHidePortion="0.25" IsHidden="False" IsFloat="False" /&gt;
+    &lt;Content ID="8" PersistString="DWSIM.FormInteractiveIronPythonConsole" AutoHidePortion="0.203007518796992" IsHidden="False" IsFloat="False" /&gt;
+    &lt;Content ID="9" PersistString="DWSIM.FlowsheetSurface_SkiaSharp" AutoHidePortion="0.25" IsHidden="False" IsFloat="False" /&gt;
+    &lt;Content ID="10" PersistString="DWSIM.FormNewSpreadsheet" AutoHidePortion="0.25" IsHidden="False" IsFloat="False" /&gt;
+    &lt;Content ID="11" PersistString="DWSIM.FormScript" AutoHidePortion="0.25" IsHidden="False" IsFloat="False" /&gt;
+  &lt;/Contents&gt;
+  &lt;Panes Count="7"&gt;
+    &lt;Pane ID="0" DockState="Document" ActiveContent="9"&gt;
+      &lt;Contents Count="7"&gt;
+        &lt;Content ID="0" RefID="7" /&gt;
+        &lt;Content ID="1" RefID="9" /&gt;
+        &lt;Content ID="2" RefID="5" /&gt;
+        &lt;Content ID="3" RefID="1" /&gt;
+        &lt;Content ID="4" RefID="10" /&gt;
+        &lt;Content ID="5" RefID="4" /&gt;
+        &lt;Content ID="6" RefID="11" /&gt;
+      &lt;/Contents&gt;
+    &lt;/Pane&gt;
+    &lt;Pane ID="1" DockState="DockBottom" ActiveContent="0"&gt;
+      &lt;Contents Count="1"&gt;
+        &lt;Content ID="0" RefID="0" /&gt;
+      &lt;/Contents&gt;
+    &lt;/Pane&gt;
+    &lt;Pane ID="2" DockState="DockBottom" ActiveContent="2"&gt;
+      &lt;Contents Count="1"&gt;
+        &lt;Content ID="0" RefID="2" /&gt;
+      &lt;/Contents&gt;
+    &lt;/Pane&gt;
+    &lt;Pane ID="3" DockState="DockLeft" ActiveContent="-1"&gt;
+      &lt;Contents Count="1"&gt;
+        &lt;Content ID="0" RefID="3" /&gt;
+      &lt;/Contents&gt;
+    &lt;/Pane&gt;
+    &lt;Pane ID="4" DockState="Float" ActiveContent="-1"&gt;
+      &lt;Contents Count="1"&gt;
+        &lt;Content ID="0" RefID="6" /&gt;
+      &lt;/Contents&gt;
+    &lt;/Pane&gt;
+    &lt;Pane ID="5" DockState="DockBottom" ActiveContent="-1"&gt;
+      &lt;Contents Count="1"&gt;
+        &lt;Content ID="0" RefID="6" /&gt;
+      &lt;/Contents&gt;
+    &lt;/Pane&gt;
+    &lt;Pane ID="6" DockState="DockRightAutoHide" ActiveContent="8"&gt;
+      &lt;Contents Count="1"&gt;
+        &lt;Content ID="0" RefID="8" /&gt;
+      &lt;/Contents&gt;
+    &lt;/Pane&gt;
+  &lt;/Panes&gt;
+  &lt;DockWindows&gt;
+    &lt;DockWindow ID="0" DockState="Document" ZOrderIndex="1"&gt;
+      &lt;NestedPanes Count="1"&gt;
+        &lt;Pane ID="0" RefID="0" PrevPane="-1" Alignment="Right" Proportion="0.5" /&gt;
+      &lt;/NestedPanes&gt;
+    &lt;/DockWindow&gt;
+    &lt;DockWindow ID="1" DockState="DockLeft" ZOrderIndex="3"&gt;
+      &lt;NestedPanes Count="1"&gt;
+        &lt;Pane ID="0" RefID="3" PrevPane="-1" Alignment="Bottom" Proportion="0.5" /&gt;
+      &lt;/NestedPanes&gt;
+    &lt;/DockWindow&gt;
+    &lt;DockWindow ID="2" DockState="DockRight" ZOrderIndex="4"&gt;
+      &lt;NestedPanes Count="1"&gt;
+        &lt;Pane ID="0" RefID="6" PrevPane="-1" Alignment="Bottom" Proportion="0.5" /&gt;
+      &lt;/NestedPanes&gt;
+    &lt;/DockWindow&gt;
+    &lt;DockWindow ID="3" DockState="DockTop" ZOrderIndex="5"&gt;
+      &lt;NestedPanes Count="0" /&gt;
+    &lt;/DockWindow&gt;
+    &lt;DockWindow ID="4" DockState="DockBottom" ZOrderIndex="2"&gt;
+      &lt;NestedPanes Count="3"&gt;
+        &lt;Pane ID="0" RefID="1" PrevPane="-1" Alignment="Right" Proportion="0.5" /&gt;
+        &lt;Pane ID="1" RefID="5" PrevPane="1" Alignment="Top" Proportion="0.5" /&gt;
+        &lt;Pane ID="2" RefID="2" PrevPane="1" Alignment="Right" Proportion="0.261838440111421" /&gt;
+      &lt;/NestedPanes&gt;
+    &lt;/DockWindow&gt;
+  &lt;/DockWindows&gt;
+  &lt;FloatWindows Count="1"&gt;
+    &lt;FloatWindow ID="0" Bounds="336, 370, 900, 155" ZOrderIndex="0"&gt;
+      &lt;NestedPanes Count="1"&gt;
+        &lt;Pane ID="0" RefID="4" PrevPane="-1" Alignment="Right" Proportion="0.5" /&gt;
+      &lt;/NestedPanes&gt;
+    &lt;/FloatWindow&gt;
+  &lt;/FloatWindows&gt;
+&lt;/DockPanel&gt;</PanelLayout>
+</DWSIM_Simulation_Data>
