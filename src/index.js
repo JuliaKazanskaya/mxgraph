@@ -5,20 +5,13 @@ import mxGraphFactory from "mxgraph";
 
 const {
     mxClient,
-    mxGraphModel,
     mxGraph,
-    mxGraphHandler,
     mxRubberband,
     mxKeyHandler,
     mxUtils,
     mxConstants,
-    mxRectangle,
     mxCompactTreeLayout,
-    mxToolbar,
-    mxGeometry,
-    mxCell,
     mxPerimeter,
-    mxGraphView,
     mxConnectionConstraint,
     mxShape,
     mxTriangle,
@@ -26,9 +19,7 @@ const {
     mxConstraintHandler,
     mxImage,
     mxEdgeHandler,
-    mxArrowConnector,
-    mxEdgeStyle,
-    mxVertexowConnector
+    mxEdgeStyle
 } = new mxGraphFactory();
 
 export default function main(el) {
@@ -52,19 +43,6 @@ export default function main(el) {
 
         graph.graphHandler.removeCellsFromParent = false;
 
-        graph.autoSizeCellsOnAdd = true;
-
-        graph.isCellLocked = function (cell) {
-            return this.isCellsLocked();
-        };
-        graph.isCellResizable = function (cell) {
-            let geo = this.model.getGeometry(cell);
-
-            return geo == null;
-            return this.isCellResizable();
-        };
-
-
         graph.getLabel = function (cell) {
             let label = this.labelsVisible ? this.convertValueToString(cell) : "";
             let geometry = this.model.getGeometry(cell);
@@ -78,7 +56,6 @@ export default function main(el) {
                     return label.substring(0, max) + "...";
                 }
             }
-
             return label;
         };
 
@@ -124,9 +101,6 @@ export default function main(el) {
             return ports2;
         };
 
-        graph.connectionHandler.isConnectableCell = function (cell) {
-            return false;
-        };
         mxEdgeHandler.prototype.isConnectableCell = function (cell) {
             return graph.connectionHandler.isConnectableCell(cell);
         };
@@ -206,7 +180,7 @@ export default function main(el) {
         // Создание элементов графа под нужные фигуры
         let style = new Object();
         for (let i = 0; i < abbreviationDictionary.length; i++) {
-            if (i == 0) {
+            if (i === 0) {
                 style[mxConstants.STYLE_SHAPE] = mxConstants.SHAPE_IMAGE;
                 style[mxConstants.STYLE_FILLCOLOR] = '#FFFFFF';
                 style[mxConstants.STYLE_PERIMETER] = mxPerimeter.RectanglePerimeter;
@@ -214,6 +188,8 @@ export default function main(el) {
                 style[mxConstants.STYLE_FOLDABLE] = false;
                 style[mxConstants.STYLE_ORTHOGONAL] = false;
                 style[mxConstants.STYLE_ENTRY_PERIMETER] = false;
+                style[mxConstants.STYLE_SHADOW] = false;
+                style[mxConstants.STYLE_ROUNDED] = false;
             } else {
                 style = mxUtils.clone(style);
             }
@@ -249,14 +225,14 @@ export default function main(el) {
             for (let key in connections) {
                 for (let connector in connections[key].OutputConnectors) {
                     connections[key].OutputConnectors[connector].Connector.attributes.forEach(el => {
-                        if (el.name == 'AttachedToObjID') {
+                        if (el.name === 'AttachedToObjID') {
                             edgeArray.push([connections[key].Name, el.value]);
                         }
                     });
                 }
                 for (let connector in connections[key].EnergyConnector) {
                     connections[key].EnergyConnector[connector].Connector.attributes.forEach(el => {
-                        if (el.name == 'AttachedToObjID') {
+                        if (el.name === 'AttachedToObjID') {
                             edgeArray.push([connections[key].Name, el.value]);
                         }
                     });
@@ -264,9 +240,9 @@ export default function main(el) {
             }
             edgeArray.forEach(el => {
                 for (let j = 0; j < vertexArray.length; j++) {
-                    if (el[0] == vertexArray[j].id.split('/')[0]) {
+                    if (el[0] === vertexArray[j].id.split('/')[0]) {
                         for (let k = 0; k < vertexArray.length; k++) {
-                            if (el[1] == vertexArray[k].id.split('/')[0]) {
+                            if (el[1] === vertexArray[k].id.split('/')[0]) {
                                 graph.insertEdge(parent, null, null, vertexArray[j], vertexArray[k]);
                             }
                         }
@@ -277,17 +253,17 @@ export default function main(el) {
             let controller = model.DWSIM_Simulation_Data.SimulationObjects.SimulationObject;
             let controllerArray = [];
             for (let key in controller) {
-                if (controller[key].ProductName == 'Controller Block') {
+                if (controller[key].ProductName === 'Controller Block') {
                     for (let atr in controller[key].ManipulatedObjectData) {
                         controller[key].ManipulatedObjectData[atr].forEach(el => {
-                                if (el.name == 'ID')
+                                if (el.name === 'ID')
                                     controllerArray.push([controller[key].Name, el.value]);
                             }
                         );
                     }
                     for (let atr in controller[key].ControlledObjectData) {
                         controller[key].ControlledObjectData[atr].forEach(el => {
-                                if (el.name == 'ID')
+                                if (el.name === 'ID')
                                     controllerArray.push([controller[key].Name, el.value]);
                             }
                         );
@@ -296,9 +272,9 @@ export default function main(el) {
             }
             controllerArray.forEach(el => {
                 for (let j = 0; j < vertexArray.length; j++) {
-                    if (el[0] == vertexArray[j].id.split('/')[0]) {
+                    if (el[0] === vertexArray[j].id.split('/')[0]) {
                         for (let k = 0; k < vertexArray.length; k++) {
-                            if (el[1] == vertexArray[k].id.split('/')[0]) {
+                            if (el[1] === vertexArray[k].id.split('/')[0]) {
                                 graph.insertEdge(parent, null, null, vertexArray[j], vertexArray[k], 'strokeColor=red;dashed=1');
                             }
                         }
@@ -313,151 +289,102 @@ export default function main(el) {
             switch (replacedName) {
                 case ('ABSORPTIONEXTRACTIONCOLUMN'):
                     return 27;
-                    break;
                 case ('AIRCOOLER'):
                     return 52;
-                    break;
                 case ('ANALOGGAUGE'):
                     return 45;
-                    break;
                 case ('CAPEOPENUNIT OPERATION'):
                     return 32;
-                    break;
                 case ('CHEMSEPCOLUMN'):
                     return 55;
-                    break;
                 case ('COMPOUNDSEPARATOR'):
                     return 32;
-                    break;
                 case ('COMPRESSOR'):
                     return 45;
-                    break;
                 case ('CONTINUOUSSTIRREDTANKREACTORCSTR'):
                     return 33;
-                    break;
                 case ('CONTROLLERBLOCK'):
                     return 49;
-                    break;
                 case ('CONVERSIONREACTOR'):
                     return 32;
-                    break;
                 case ('COOLER'):
                     return 52;
-                    break;
                 case ('DIGITALGAUGE'):
                     return 49;
-                    break;
                 case ('DISTILLATIONCOLUMN'):
                     return 55;
-                    break;
                 case ('DUMMYUNITOPERATION'):
                     return 40;
-                    break;
                 case ('ENERGYMIXER'):
                     return 58;
-                    break;
                 case ('ENERGYRECYCLEBLOCK'):
                     return 49;
-                    break;
                 case ('ENERGYSTREAM'):
                     return 57;
-                    break;
                 case ('EQUILIBRIUMREACTOR'):
                     return 32;
-                    break;
                 case ('EXPANDERTURBINE'):
                     return 45;
-                    break;
                 case ('FILTER'):
                     return 32;
-                    break;
                 case ('FLOWSHEET'):
                     return 32;
-                    break;
                 case ('GASLIQUIDSEPARATOR'):
                     return 27;
-                    break;
                 case ('GIBBSREACTOR'):
                     return 32;
-                    break;
                 case ('GIBBSREACTORREAKTORO'):
                     return 57;
-                    break;
                 case ('HEATER'):
                     return 51;
-                    break;
                 case ('HEATEXCHANGER'):
                     return 61;
-                    break;
                 case ('HYDROELECTRICTURBINE'):
                     return 54;
-                    break;
                 case ('INPUTBOX'):
                     return 49;
-                    break;
                 case ('MATERIALSTREAM'):
                     return 57;
-                    break;
                 case ('ORIFICEPLATE'):
                     return 51;
-                    break;
                 case ('PEMFUELCELLAMPHLETT'):
                     return 49;
-                    break;
                 case ('PIDCONTROLLER'):
                     return 52;
-                    break;
                 case ('PIPESEGMENT'):
                     return 73;
-                    break;
                 case ('PLUGFLOWREACTOR PRF'):
                     return 61;
-                    break;
                 case ('PUMP'):
                     return 49;
-                    break;
                 case ('PYTHONSCRIPT'):
                     return 32;
-                    break;
                 case ('RECYCLEBLOCK'):
                     return 49;
-                    break;
                 case ('SHORTCUTCOLUMN'):
                     return 55;
-                    break;
                 case ('SOLARPANEL'):
                     return 50;
-                    break;
                 case ('SOLIDSSEPARATOR'):
                     return 32;
-                    break;
                 case ('SPECIFICATIONBLOCK'):
                     return 49;
-                    break;
                 case ('SPREADSHEET'):
                     return 32;
-                    break;
                 case ('STREAMMIXER'):
                     return 44;
-                    break;
                 case ('STREAMSPLITTER'):
                     return 44;
-                    break;
                 case ('SWITCH'):
                     return 67;
-                    break;
                 case ('TANK'):
                     return 33;
-                    break;
                 case ('VALVE'):
                     return 76;
-                    break;
                 case ('WATERELECTROLYZER'):
                     return 51;
-                    break;
                 case ('WINDTURBINE'):
                     return 39;
-                    break;
             }
         }
         function figureSizeHeight(name) {
@@ -465,151 +392,102 @@ export default function main(el) {
             switch (replacedName) {
                 case ('ABSORPTIONEXTRACTIONCOLUMN'):
                     return 51;
-                    break;
                 case ('AIRCOOLER'):
                     return 52;
-                    break;
                 case ('ANALOGGAUGE'):
                     return 45;
-                    break;
                 case ('CAPEOPENUNIT OPERATION'):
                     return 51;
-                    break;
                 case ('CHEMSEPCOLUMN'):
                     return 68;
-                    break;
                 case ('COMPOUNDSEPARATOR'):
                     return 51;
-                    break;
                 case ('COMPRESSOR'):
                     return 51;
-                    break;
                 case ('CONTINUOUSSTIRREDTANKREACTORCSTR'):
                     return 46;
-                    break;
                 case ('CONTROLLERBLOCK'):
                     return 49;
-                    break;
                 case ('CONVERSIONREACTOR'):
                     return 54;
-                    break;
                 case ('COOLER'):
                     return 52;
-                    break;
                 case ('DIGITALGAUGE'):
                     return 49;
-                    break;
                 case ('DISTILLATIONCOLUMN'):
                     return 68;
-                    break;
                 case ('DUMMYUNITOPERATION'):
                     return 46;
-                    break;
                 case ('ENERGYMIXER'):
                     return 51;
-                    break;
                 case ('ENERGYRECYCLEBLOCK'):
                     return 49;
-                    break;
                 case ('ENERGYSTREAM'):
                     return 30;
-                    break;
                 case ('EQUILIBRIUMREACTOR'):
                     return 54;
-                    break;
                 case ('EXPANDERTURBINE'):
                     return 51;
-                    break;
                 case ('FILTER'):
                     return 51;
-                    break;
                 case ('FLOWSHEET'):
                     return 31;
-                    break;
                 case ('GASLIQUIDSEPARATOR'):
                     return 51;
-                    break;
                 case ('GIBBSREACTOR'):
                     return 51;
-                    break;
                 case ('GIBBSREACTORREAKTORO'):
                     return 57;
-                    break;
                 case ('HEATER'):
                     return 51;
-                    break;
                 case ('HEATEXCHANGER'):
                     return 50;
-                    break;
                 case ('HYDROELECTRICTURBINE'):
                     return 54;
-                    break;
                 case ('INPUTBOX'):
                     return 46;
-                    break;
                 case ('MATERIALSTREAM'):
                     return 30;
-                    break;
                 case ('ORIFICEPLATE'):
                     return 51;
-                    break;
                 case ('PEMFUELCELLAMPHLETT'):
                     return 50;
-                    break;
                 case ('PIDCONTROLLER'):
                     return 45;
-                    break;
                 case ('PIPESEGMENT'):
                     return 50;
-                    break;
                 case ('PLUGFLOWREACTOR PRF'):
                     return 50;
-                    break;
                 case ('PUMP'):
                     return 49;
-                    break;
                 case ('PYTHONSCRIPT'):
                     return 31;
-                    break;
                 case ('RECYCLEBLOCK'):
                     return 49;
-                    break;
                 case ('SHORTCUTCOLUMN'):
                     return 68;
-                    break;
                 case ('SOLARPANEL'):
                     return 50;
-                    break;
                 case ('SOLIDSSEPARATOR'):
                     return 51;
-                    break;
                 case ('SPECIFICATIONBLOCK'):
                     return 49;
-                    break;
                 case ('SPREADSHEET'):
                     return 31;
-                    break;
                 case ('STREAMMIXER'):
                     return 50;
-                    break;
                 case ('STREAMSPLITTER'):
                     return 50;
-                    break;
                 case ('SWITCH'):
                     return 35;
-                    break;
                 case ('TANK'):
                     return 48;
-                    break;
                 case ('VALVE'):
                     return 44;
-                    break;
                 case ('WATERELECTROLYZER'):
                     return 50;
-                    break;
                 case ('WINDTURBINE'):
                     return 49;
-                    break;
             }
         }
 
