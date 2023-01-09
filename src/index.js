@@ -1,7 +1,7 @@
 import './index.css';
-import {model} from "./js/model";
-import {abbreviationDictionary} from "./js/abbreviationDictionary";
-import mxGraphFactory from "mxgraph";
+import {model} from './js/model';
+import {abbreviationDictionary} from './js/abbreviationDictionary';
+import mxGraphFactory from 'mxgraph';
 
 const {
     mxClient,
@@ -14,17 +14,18 @@ const {
     mxPerimeter,
     mxConnectionConstraint,
     mxShape,
-    mxTriangle,
     mxPoint,
     mxConstraintHandler,
+    mxConnectionHandler,
     mxImage,
     mxEdgeHandler,
-    mxEdgeStyle
+    mxEdgeStyle,
+    mxEvent
 } = new mxGraphFactory();
 
 export default function main(el) {
     if (!mxClient.isBrowserSupported()) { //Проверка поддержки браузера
-        mxUtils.error("Browser is not supported!", 200, false);
+        mxUtils.error('Browser is not supported!', 200, false);
     } else {
 
         mxClient.NO_FO = mxClient.NO_FO || mxClient.IS_SF || mxClient.IS_GC;
@@ -39,12 +40,10 @@ export default function main(el) {
         graph.setConnectable(true);
         graph.setPortsEnabled(false);
 
-        let ports = new Array();
-
         graph.graphHandler.removeCellsFromParent = false;
 
         graph.getLabel = function (cell) {
-            let label = this.labelsVisible ? this.convertValueToString(cell) : "";
+            let label = this.labelsVisible ? this.convertValueToString(cell) : '';
             let geometry = this.model.getGeometry(cell);
 
             if (!this.model.isCollapsed(cell) && geometry != null && (geometry.offset == null || (geometry.offset.x === 0 && geometry.offset.y === 0)) && this.model.isVertex(cell) && geometry.width >= 2) {
@@ -53,7 +52,7 @@ export default function main(el) {
                 let max = geometry.width / (fontSize * 0.825);
 
                 if (max < label.length) {
-                    return label.substring(0, max) + "...";
+                    return label.substring(0, max) + '...';
                 }
             }
             return label;
@@ -72,34 +71,54 @@ export default function main(el) {
         let parent = graph.getDefaultParent();
 
         graph.getModel().beginUpdate();
-        //graph.prototype.foldingEnabled = false;
 
         // Для соединения клеток графа. Длинный кусок кода
-        mxConstraintHandler.prototype.pointImage = new mxImage('images/dot.gif', 10, 10);
-        ports['w'] = {x: 0, y: 0.5, perimeter: true, constraint: 'west'};
-        ports['e'] = {x: 1, y: 0.5, perimeter: true, constraint: 'east'};
-        ports['n'] = {x: 0.5, y: 0, perimeter: true, constraint: 'north'};
-        ports['s'] = {x: 0.5, y: 1, perimeter: true, constraint: 'south'};
+        mxConstraintHandler.prototype.intersects = function (icon, point, source, existingEdge) {
+            return (!source || existingEdge) || mxUtils.intersects(icon.bounds, point);
+        };
+        const mxConnectionHandlerUpdateEdgeState = mxConnectionHandler.prototype.updateEdgeState;
+        mxConnectionHandler.prototype.updateEdgeState = function (pt, constraint) {
+            if (pt != null && this.previous != null) {
+                const constraints = this.graph.getAllConnectionConstraints(this.previous);
+                let nearestConstraint = null;
+                let dist = null;
 
-        let ports2 = new Array();
+                for (let i = 0; i < constraints.length; i++) {
+                    const cp = this.graph.getConnectionPoint(this.previous, constraints[i]);
 
-        ports2['in1'] = {x: 0, y: 0, perimeter: true, constraint: 'west'};
-        ports2['in2'] = {x: 0, y: 0.25, perimeter: true, constraint: 'west'};
-        ports2['in3'] = {x: 0, y: 0.5, perimeter: true, constraint: 'west'};
-        ports2['in4'] = {x: 0, y: 0.75, perimeter: true, constraint: 'west'};
-        ports2['in5'] = {x: 0, y: 1, perimeter: true, constraint: 'west'};
+                    if (cp != null) {
+                        let tmp = (cp.x - pt.x) * (cp.x - pt.x) + (cp.y - pt.y) * (cp.y - pt.y);
 
-        ports2['out1'] = {x: 0.5, y: 0, perimeter: true, constraint: 'north east'};
-        ports2['out2'] = {x: 1, y: 0.5, perimeter: true, constraint: 'east'};
-        ports2['out3'] = {x: 0.5, y: 1, perimeter: true, constraint: 'south east'};
+                        if (dist == null || tmp < dist) {
+                            nearestConstraint = constraints[i];
+                            dist = tmp;
+                        }
+                    }
+                }
 
-        mxShape.prototype.getPorts = function () {
-            return ports;
+                if (nearestConstraint != null) {
+                    this.sourceConstraint = nearestConstraint;
+                }
+            }
+            mxConnectionHandlerUpdateEdgeState.apply(this, arguments);
         };
 
-        mxTriangle.prototype.getPorts = function () {
-            return ports2;
+        if (graph.connectionHandler.connectImage == null) {
+            graph.connectionHandler.isConnectableCell = function (cell) {
+                return false;
+            };
+            mxEdgeHandler.prototype.isConnectableCell = function (cell) {
+                return graph.connectionHandler.isConnectableCell(cell);
+            };
+        }
+
+        graph.connectionHandler.createEdgeState = function (me) {
+            const edge = graph.createEdge(null, null, null, null, null, 'edgeStyle=orthogonalEdgeStyle');
+
+            return new mxCellState(this.graph.view, edge, this.graph.getCellStyle(edge));
         };
+
+        mxConstraintHandler.prototype.pointImage = new mxImage('images/dot.gif', 8, 8);
 
         mxEdgeHandler.prototype.isConnectableCell = function (cell) {
             return graph.connectionHandler.isConnectableCell(cell);
@@ -109,73 +128,63 @@ export default function main(el) {
             return terminal;
         };
 
+        // Эта функция показывает доступные порты при наведении мышки
         graph.getAllConnectionConstraints = function (terminal, source) {
-            if (terminal != null && terminal.shape != null && terminal.shape.stencil != null) {
-                if (terminal.shape.stencil != null) {
-                    return terminal.shape.stencil.constraints;
-                }
-            } else if (terminal != null && this.model.isVertex(terminal.cell)) {
-                if (terminal.shape != null) {
-                    let ports = terminal.shape.getPorts();
-                    let cstrs = new Array();
-
-                    for (let id in ports) {
-                        let port = ports[id];
-
-                        let cstr = new mxConnectionConstraint(new mxPoint(port.x, port.y), port.perimeter);
-                        cstr.id = id;
-                        cstrs.push(cstr);
-                    }
-                    return cstrs;
+            if (terminal != null && this.model.isVertex(terminal.cell)) {
+                let style = terminal.cell.style;
+                if (style.includes('MATERIALSTREAM') || style.includes('ENERGYSTREAM') || style.includes('ORIFICEPLATE') || style.includes('TANK') || style.includes('ENERGYRECYCLEBLOCK') || style.includes('CONTROLLERBLOCK') || style.includes('SPECIFICATIONBLOCK') || style.includes('VALVE')) {
+                    return [new mxConnectionConstraint(new mxPoint(0, 0.5), true), new mxConnectionConstraint(new mxPoint(1, 0.5), true)];
+                } else if (style.includes('COMPRESSOR') || style.includes('PLUGFLOWREACTORPRF')) {
+                    return [new mxConnectionConstraint(new mxPoint(0, 0.3), true), new mxConnectionConstraint(new mxPoint(0, 0.7), true), new mxConnectionConstraint(new mxPoint(1, 0.5), true)];
+                } else if (style.includes('PUMP') || style.includes('PIPESEGMENT') || style.includes('AIRCOOLER') || style.includes('GIBBSREACTORREAKTORO') || style.includes('SOLIDSSEPARATOR') || style.includes('HYDROELECTRICTURBINE') || style.includes('PEMFUELCELLAMPHLETT') || style.includes('WATERELECTROLYZER')) {
+                    return [new mxConnectionConstraint(new mxPoint(0, 0.5), true), new mxConnectionConstraint(new mxPoint(0.5, 1), true), new mxConnectionConstraint(new mxPoint(1, 0.5), true)];
+                } else if (style.includes('EXPANDERTURBINE')) {
+                    return [new mxConnectionConstraint(new mxPoint(1, 0.3), true), new mxConnectionConstraint(new mxPoint(1, 0.7), true), new mxConnectionConstraint(new mxPoint(0, 0.5), true)];
+                } else if (style.includes('SOLARPANEL') || style.includes('WINDTURBINE')) {
+                    return [new mxConnectionConstraint(new mxPoint(0.5, 1), true)];
+                } else if (style.includes('COMPOUNDSEPARATOR') || style.includes('STREAMSPLITTER') || style.includes('CONVERSIONREACTOR') || style.includes('FILTER')) {
+                    return [new mxConnectionConstraint(new mxPoint(0, 0.5), true), new mxConnectionConstraint(new mxPoint(1, 0.3), true), new mxConnectionConstraint(new mxPoint(1, 0.5), true), new mxConnectionConstraint(new mxPoint(1, 0.7), true)];
+                } else if (style.includes('HEATER') || style.includes('HEATEXCHANGER') || style.includes('CONTINUOUSSTIRREDTANKREACTORCSTR') || style.includes('EQUILIBRIUMREACTOR') || style.includes('GIBBSREACTOR') || style.includes('COOLER')) {
+                    return [new mxConnectionConstraint(new mxPoint(0.5, 0), true), new mxConnectionConstraint(new mxPoint(0, 0.5), true), new mxConnectionConstraint(new mxPoint(0.5, 1), true), new mxConnectionConstraint(new mxPoint(1, 0.5), true)];
+                } else if (style.includes('GASLIQUIDSEPARATOR') || style.includes('FLOWSHEET') || style.includes('PYTHONSCRIPT') || style.includes('NEURALNETWORKUNITOPERATION')) {
+                    return [new mxConnectionConstraint(new mxPoint(0, 0.1), true), new mxConnectionConstraint(new mxPoint(0, 0.3), true), new mxConnectionConstraint(new mxPoint(0, 0.5), true), new mxConnectionConstraint(new mxPoint(0, 0.7), true), new mxConnectionConstraint(new mxPoint(0, 0.9), true), new mxConnectionConstraint(new mxPoint(1, 0.1), true), new mxConnectionConstraint(new mxPoint(1, 0.3), true), new mxConnectionConstraint(new mxPoint(1, 0.5), true), new mxConnectionConstraint(new mxPoint(1, 0.7), true), new mxConnectionConstraint(new mxPoint(1, 0.9), true)];
+                } else if (style.includes('STREAMMIXER') || style.includes('ENERGYMIXER')) {
+                    return [new mxConnectionConstraint(new mxPoint(0, 0.125), true), new mxConnectionConstraint(new mxPoint(0, 0.250), true), new mxConnectionConstraint(new mxPoint(0, 0.325), true), new mxConnectionConstraint(new mxPoint(0, 0.450), true), new mxConnectionConstraint(new mxPoint(0, 0.575), true), new mxConnectionConstraint(new mxPoint(0, 0.600), true), new mxConnectionConstraint(new mxPoint(0, 0.725), true), new mxConnectionConstraint(new mxPoint(0, 0.850), true), new mxConnectionConstraint(new mxPoint(0, 0.975), true), new mxConnectionConstraint(new mxPoint(1, 0.5), true)];
+                } else if (style.includes('SPREADSHEET')) {
+                    return [new mxConnectionConstraint(new mxPoint(0, 0.1), true), new mxConnectionConstraint(new mxPoint(0, 0.3), true), new mxConnectionConstraint(new mxPoint(0, 0.5), true), new mxConnectionConstraint(new mxPoint(0, 0.7), true), new mxConnectionConstraint(new mxPoint(0, 0.9), true), new mxConnectionConstraint(new mxPoint(1, 0.2), true), new mxConnectionConstraint(new mxPoint(1, 0.4), true), new mxConnectionConstraint(new mxPoint(1, 0.6), true), new mxConnectionConstraint(new mxPoint(1, 0.8), true)];
+                } else {
+                    return [new mxConnectionConstraint(new mxPoint(0.5, 0), true), new mxConnectionConstraint(new mxPoint(0, 0.5), true), new mxConnectionConstraint(new mxPoint(0.5, 1), true), new mxConnectionConstraint(new mxPoint(1, 0.5), true)];
                 }
             }
+
             return null;
         };
 
-        graph.setConnectionConstraint = function (edge, terminal, source, constraint) {
-            if (constraint != null) {
-                let key = (source) ? mxConstants.STYLE_SOURCE_PORT : mxConstants.STYLE_TARGET_PORT;
-
-                if (constraint == null || constraint.id == null) {
-                    this.setCellStyles(key, null, [edge]);
-                } else if (constraint.id != null) {
-                    this.setCellStyles(key, constraint.id, [edge]);
-                }
-            }
-        };
-        graph.getConnectionConstraint = function (edge, terminal, source) {
-            let key = (source) ? mxConstants.STYLE_SOURCE_PORT : mxConstants.STYLE_TARGET_PORT;
-            let id = edge.style[key];
-
-            if (id != null) {
-                let c = new mxConnectionConstraint(null, null);
-                c.id = id;
-                return c;
-            }
-            return null;
+        graph.connectionHandler.isConnectableCell = function (cell) {
+            return false;
         };
 
-        const graphGetConnectionPoint = graph.getConnectionPoint;
-        graph.getConnectionPoint = function (vertex, constraint) {
-            if (constraint.id != null && vertex != null && vertex.shape != null) {
-                let port = vertex.shape.getPorts()[constraint.id];
-
-                if (port != null) {
-                    constraint = new mxConnectionConstraint(new mxPoint(port.x, port.y), port.perimeter);
-                }
-            }
-
-            return graphGetConnectionPoint.apply(this, arguments);
-        };
-        //Задание ребер графа
+        //Задание ребер графа по-умолчанию
         const styleEdge = graph.getStylesheet().getDefaultEdgeStyle();
         styleEdge[mxConstants.STYLE_EDGE] = mxEdgeStyle.TopToBottom;
         styleEdge[mxConstants.STYLE_ENDARROW] = mxConstants.ARROW_CLASSIC; //mxConstants.NONE; Если убираем стрелки соединений
         styleEdge[mxConstants.STYLE_STROKEWIDTH] = 1;
         styleEdge[mxConstants.STYLE_STROKECOLOR] = 'black';
-        styleEdge[mxConstants.STYLE_CURVED] = '0';
-        styleEdge[mxConstants.STYLE_ROUNDED] = '0';
-        styleEdge[mxConstants.STYLE_SEGMENT] = '5';
+        styleEdge[mxConstants.STYLE_CURVED] = 0;
+        styleEdge[mxConstants.STYLE_ROUNDED] = 0;
+        styleEdge[mxConstants.STYLE_SEGMENT] = 100;
+        styleEdge[mxConstants.STYLE_ENTRY_PERIMETER] = 1;
+        styleEdge[mxConstants.STYLE_EXIT_PERIMETER] = 1;
+        styleEdge[mxConstants.STYLE_EXIT_X] = 1;
+        styleEdge[mxConstants.STYLE_EXIT_Y] = 0.5;
+        styleEdge[mxConstants.STYLE_ENTRY_X] = 0;
+        styleEdge[mxConstants.STYLE_ENTRY_Y] = 0.5;
+
+        //Удаление по Del
+        const keyHandler = new mxKeyHandler(graph);
+        keyHandler.bindKey(46, function (evt) {
+            if (graph.isEnabled()) graph.removeCells();
+        });
 
         // Создание элементов графа под нужные фигуры
         let style = new Object();
@@ -190,6 +199,8 @@ export default function main(el) {
                 style[mxConstants.STYLE_ENTRY_PERIMETER] = false;
                 style[mxConstants.STYLE_SHADOW] = false;
                 style[mxConstants.STYLE_ROUNDED] = false;
+                style[mxConstants.STYLE_ENTRY_PERIMETER] = 1;
+                style[mxConstants.STYLE_EXIT_PERIMETER] = 1;
             } else {
                 style = mxUtils.clone(style);
             }
@@ -197,10 +208,10 @@ export default function main(el) {
             graph.getStylesheet().putCellStyle('\'' + abbreviationDictionary[i][0].toUpperCase().replace(/\W*/gi, '') + '\'', style);
         }
 
-        let vertex = []; //Список вершин, специально вынесла наружу
+        const vertex = []; //Список вершин, специально вынесла наружу
         //Сопоставление типа элемента и фигуры
         function switchType(productName) {
-            return '\'' + productName.toUpperCase().replace(/\W*/gi, '') + '\''; // Выгрузить точный справочник всех фигур по наименованиям
+            return '\'' + productName.toUpperCase().replace(/\W*/gi, '') + '\'';
         }
 
         // Подпись вершин графа
@@ -238,12 +249,15 @@ export default function main(el) {
                     });
                 }
             }
+
             edgeArray.forEach(el => {
                 for (let j = 0; j < vertexArray.length; j++) {
                     if (el[0] === vertexArray[j].id.split('/')[0]) {
                         for (let k = 0; k < vertexArray.length; k++) {
                             if (el[1] === vertexArray[k].id.split('/')[0]) {
-                                graph.insertEdge(parent, null, null, vertexArray[j], vertexArray[k]);
+                                if (vertexArray[k].id.split('/')[1] === 'Solar Panel' || vertexArray[k].id.split('/')[1] === 'Wind Turbine') {
+                                    graph.insertEdge(parent, null, null, vertexArray[j], vertexArray[k], 'exitX=0.5;exitY=1;exitPerimeter=1;entryX=0;entryY=0.5;entryPerimeter=1;');
+                                } else graph.insertEdge(parent, null, null, vertexArray[j], vertexArray[k]);
                             }
                         }
                     }
@@ -256,17 +270,13 @@ export default function main(el) {
                 if (controller[key].ProductName === 'Controller Block') {
                     for (let atr in controller[key].ManipulatedObjectData) {
                         controller[key].ManipulatedObjectData[atr].forEach(el => {
-                                if (el.name === 'ID')
-                                    controllerArray.push([controller[key].Name, el.value]);
-                            }
-                        );
+                            if (el.name === 'ID') controllerArray.push([controller[key].Name, el.value]);
+                        });
                     }
                     for (let atr in controller[key].ControlledObjectData) {
                         controller[key].ControlledObjectData[atr].forEach(el => {
-                                if (el.name === 'ID')
-                                    controllerArray.push([controller[key].Name, el.value]);
-                            }
-                        );
+                            if (el.name === 'ID') controllerArray.push([controller[key].Name, el.value]);
+                        });
                     }
                 }
             }
@@ -293,7 +303,7 @@ export default function main(el) {
                     return 52;
                 case ('ANALOGGAUGE'):
                     return 45;
-                case ('CAPEOPENUNIT OPERATION'):
+                case ('CAPEOPENUNITOPERATION'):
                     return 32;
                 case ('CHEMSEPCOLUMN'):
                     return 55;
@@ -316,11 +326,11 @@ export default function main(el) {
                 case ('DUMMYUNITOPERATION'):
                     return 40;
                 case ('ENERGYMIXER'):
-                    return 58;
+                    return 58 * 2;
                 case ('ENERGYRECYCLEBLOCK'):
-                    return 49;
+                    return 49 / 2;
                 case ('ENERGYSTREAM'):
-                    return 57;
+                    return 57 / 2;
                 case ('EQUILIBRIUMREACTOR'):
                     return 32;
                 case ('EXPANDERTURBINE'):
@@ -344,23 +354,23 @@ export default function main(el) {
                 case ('INPUTBOX'):
                     return 49;
                 case ('MATERIALSTREAM'):
-                    return 57;
+                    return 57 / 2;
                 case ('ORIFICEPLATE'):
-                    return 51;
+                    return 51 / 2;
                 case ('PEMFUELCELLAMPHLETT'):
                     return 49;
                 case ('PIDCONTROLLER'):
                     return 52;
                 case ('PIPESEGMENT'):
                     return 73;
-                case ('PLUGFLOWREACTOR PRF'):
+                case ('PLUGFLOWREACTORPRF'):
                     return 61;
                 case ('PUMP'):
                     return 49;
                 case ('PYTHONSCRIPT'):
                     return 32;
                 case ('RECYCLEBLOCK'):
-                    return 49;
+                    return 49 / 2;
                 case ('SHORTCUTCOLUMN'):
                     return 55;
                 case ('SOLARPANEL'):
@@ -387,6 +397,7 @@ export default function main(el) {
                     return 39;
             }
         }
+
         function figureSizeHeight(name) {
             let replacedName = name.toUpperCase().replace(/\W*/gi, '');
             switch (replacedName) {
@@ -396,7 +407,7 @@ export default function main(el) {
                     return 52;
                 case ('ANALOGGAUGE'):
                     return 45;
-                case ('CAPEOPENUNIT OPERATION'):
+                case ('CAPEOPENUNITOPERATION'):
                     return 51;
                 case ('CHEMSEPCOLUMN'):
                     return 68;
@@ -419,11 +430,11 @@ export default function main(el) {
                 case ('DUMMYUNITOPERATION'):
                     return 46;
                 case ('ENERGYMIXER'):
-                    return 51;
+                    return 51 * 2;
                 case ('ENERGYRECYCLEBLOCK'):
-                    return 49;
+                    return 49 / 2;
                 case ('ENERGYSTREAM'):
-                    return 30;
+                    return 30 / 2;
                 case ('EQUILIBRIUMREACTOR'):
                     return 54;
                 case ('EXPANDERTURBINE'):
@@ -447,7 +458,7 @@ export default function main(el) {
                 case ('INPUTBOX'):
                     return 46;
                 case ('MATERIALSTREAM'):
-                    return 30;
+                    return 30 / 2;
                 case ('ORIFICEPLATE'):
                     return 51;
                 case ('PEMFUELCELLAMPHLETT'):
@@ -456,14 +467,14 @@ export default function main(el) {
                     return 45;
                 case ('PIPESEGMENT'):
                     return 50;
-                case ('PLUGFLOWREACTOR PRF'):
+                case ('PLUGFLOWREACTORPRF'):
                     return 50;
                 case ('PUMP'):
                     return 49;
                 case ('PYTHONSCRIPT'):
                     return 31;
                 case ('RECYCLEBLOCK'):
-                    return 49;
+                    return 49 / 2;
                 case ('SHORTCUTCOLUMN'):
                     return 68;
                 case ('SOLARPANEL'):
@@ -506,8 +517,9 @@ export default function main(el) {
             //Упорядочивание в виде дерева
             let layout = new mxCompactTreeLayout(graph);
             //Перерисовка ветвей
-
             layout.execute(parent);
+
+
         }
 
         try {
@@ -519,7 +531,7 @@ export default function main(el) {
     }
 }
 try {
-    main(document.getElementById("graphContainer"));
+    main(document.getElementById('graphContainer'));
 } catch (er) {
-    console.log("error in main ", er.message);
+    console.log('error in main ', er.message);
 }
